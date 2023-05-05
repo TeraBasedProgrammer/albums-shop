@@ -46,10 +46,10 @@ class AlbumDeleteView(generic.DeleteView):
 
 
 # New
-class PostUpdateView(generic.UpdateView):
+class AlbumUpdateView(generic.UpdateView):
     template_name = "album_update.html"
-    # form_class = PostModelForm
-    # model = Post
+    form_class = AlbumModelForm
+    model = Album
 
     # def dispatch(self, request, *args, **kwargs):
     #     self.object = self.get_object()
@@ -57,5 +57,5 @@ class PostUpdateView(generic.UpdateView):
     #             raise PermissionDenied()
     #     return super().dispatch(request, *args, **kwargs)
 
-    # def get_success_url(self):
-    #     return reverse("profile", args=[self.request.user.pk])
+    def get_success_url(self):
+        return reverse("albums-list")
