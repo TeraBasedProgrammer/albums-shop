@@ -1,0 +1,12 @@
+<div style="display: flex; flex-wrap: wrap;">
+{% for album in albums %}
+    <div style="width: 33.33%; padding: 10px;">
+        <div class="album">
+            <img src="{{ album.image }}" alt="{{ album.title }}">
+            <a href="{% url 'album-detail' album.pk %}"><h3>{{ album.title }}</h3></a>
+            <p>{{ album.artist.title }}</p>
+            <p>Price: {{ album.price }}</p>
+        </div>
+    </div>
+{% endfor %}
+</div>

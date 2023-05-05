@@ -18,7 +18,7 @@ migrate:
 
 # Fill up django db
 setupdb:
-	python manage.py setub-db
+	python manage.py setup-db
 
 # Clear django db custom models
 resetdb:

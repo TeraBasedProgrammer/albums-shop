@@ -4,9 +4,15 @@ from django.db import models
 class Artist(models.Model):
     title = models.CharField(max_length=75)
 
+    def __str__(self) -> str:
+        return self.title
+
 
 class Genre(models.Model):
     title = models.CharField(max_length=75)
+    
+    def __str__(self) -> str:
+        return self.title
 
 
 class Album(models.Model):

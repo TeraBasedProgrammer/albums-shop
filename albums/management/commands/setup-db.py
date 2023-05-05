@@ -8,8 +8,6 @@ from albums.models import Album, Genre, Artist
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        genres = {}
-        artists = {}
         with open('albums-v2.json', 'r', encoding='utf-8') as file:
             data = json.loads(file.read())
         for album in data:
@@ -22,7 +20,7 @@ class Command(BaseCommand):
             album = Album.objects.create(title=album['title'],
                                  artist=current_artist[0],
                                  release_date=album['release-date'],
-                                 price=random.randint(1500, 2500), 
+                                 price=1488,
                                  duration=album['duration'],
                                  image=album['image'],
                                  tracks=album['tracks'])

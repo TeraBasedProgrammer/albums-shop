@@ -27,8 +27,8 @@ INSTALLED_APPS = [
     'albums',
 
     # Third-party apps
-    # 'crispy_forms',
-    # 'crispy_tailwind',
+    'crispy_forms',
+    'crispy_tailwind',
 ]
 
 MIDDLEWARE = [
@@ -42,11 +42,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'website.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -97,11 +96,9 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# # New
-# CRISPY_TEMPLATE_PACK = 'tailwind'
+CRISPY_TEMPLATE_PACK = 'tailwind'
 
-# # New
-# CRISPY_ALLOWED_TEMPLATE_PACKS = 'tailwind'
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'tailwind'
 
 # # New
 # LOGIN_REDIRECT_URL = '/posts/'
