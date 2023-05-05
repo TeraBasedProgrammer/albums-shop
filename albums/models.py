@@ -1,5 +1,7 @@
 from django.db import models
 
+from .validators import validate_text
+
 
 class Artist(models.Model):
     title = models.CharField(max_length=75)
@@ -17,10 +19,10 @@ class Genre(models.Model):
 
 class Album(models.Model):
     # General fields
-    title = models.CharField(max_length=75)
+    title = models.CharField(max_length=75, validators=[validate_text])
     release_date = models.CharField(max_length=25, blank=True)
     duration = models.CharField(max_length=10, blank=True)
-    image = models.URLField()
+    image = models.URLField()    
     tracks = models.JSONField()
     price = models.IntegerField()
 

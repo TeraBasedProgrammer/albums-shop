@@ -29,7 +29,7 @@ class AlbumCreateView(generic.CreateView):
     def get_success_url(self):
         return reverse("albums-list")
 
-class PostDeleteView(generic.DeleteView):
+class AlbumDeleteView(generic.DeleteView):
     template_name = "album_delete.html"
     model = Album
     context_object_name = 'album'
@@ -39,9 +39,10 @@ class PostDeleteView(generic.DeleteView):
     #     if self.request.user != self.object.author:
     #             raise PermissionDenied()
     #     return super().dispatch(request, *args, **kwargs)
+    
+    def get_success_url(self):
+        return reverse("albums-list")
 
-    # def get_success_url(self):
-    #     return reverse("profile", args=[self.request.user.pk])
 
 
 # New
