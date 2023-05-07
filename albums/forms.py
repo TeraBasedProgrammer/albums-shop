@@ -11,10 +11,10 @@ class AlbumModelForm(forms.ModelForm):
                                 widget=forms.Textarea()) 
     genres = forms.ModelMultipleChoiceField(
             widget=forms.SelectMultiple(),
-            queryset=Genre.objects.all(),
+            queryset=Genre.objects.get_ordered_by_title(),
             required=True,
         )
-    artist = forms.ModelChoiceField(queryset=Artist.objects.all().order_by('title'),
+    artist = forms.ModelChoiceField(queryset=Artist.objects.get_ordered_by_title(),
                                required=True)
 
 

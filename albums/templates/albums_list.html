@@ -1,12 +1,42 @@
-<div style="display: flex; flex-wrap: wrap;">
-{% for album in albums %}
-    <div style="width: 33.33%; padding: 10px;">
-        <div class="album">
-            <img src="{{ album.image }}" alt="{{ album.title }}">
-            <a href="{% url 'album-detail' album.pk %}"><h3>{{ album.title }}</h3></a>
-            <p>{{ album.artist.title }}</p>
-            <p>Price: {{ album.price }}</p>
+<div style="display: flex; justify-content: left;">
+    <div style="width: 30%;">
+        <h2>Giga nigga based side bar front end is the best</h2>
+        <form action="{% url 'albums-filter' %}" method="get">
+        <div>
+            <h3>Genres</h3>
+            <ul>
+            {% for genre in view.get_genres %}
+                <li>
+                    <input type="checkbox" name="genre" value="{{ genre.title }}">
+                    <span>{{genre.title}}</span>
+                </li>
+            {% endfor %}
+            </ul>
         </div>
+        <div>
+            <h3>Artists</h3>
+            <ul>
+            {% for artist in view.get_artists %}
+                <li>
+                    <input type="checkbox" name="artist" value="{{ artist.title }}">
+                    <span>{{artist.title}}</span>
+                </li>
+            {% endfor %}
+            </ul>
+            <button type="submit">Search</button>
+        </div>
+        </form>
     </div>
-{% endfor %}
+    <div style="display: flex; flex-wrap: wrap; width: 70%; flex-direction: row; justify-content: space-around;">
+    {% for album in albums %}
+        <div style="width: max-content; padding: 10px; height: max-content;">
+            <div class="album">
+                <a href="{% url 'album-detail' album.pk %}"><img src="{{ album.image }}" alt="{{ album.title }}"></a>
+                <a href="{% url 'album-detail' album.pk %}"><h3>{{ album.title }}</h3></a>
+                <p>{{ album.artist.title }}</p>
+                <p>Price: {{ album.price }}</p>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
 </div>

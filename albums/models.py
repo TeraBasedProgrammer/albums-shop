@@ -3,15 +3,24 @@ from django.db import models
 from .validators import validate_text
 
 
+class GenreArtistManager(models.Manager):
+    def get_ordered_by_title(self):
+        return self.all().order_by('title')
+
+
+
 class Artist(models.Model):
     title = models.CharField(max_length=75)
 
+    objects = GenreArtistManager()
     def __str__(self) -> str:
         return self.title
 
 
 class Genre(models.Model):
     title = models.CharField(max_length=75)
+    
+    objects = GenreArtistManager()
     
     def __str__(self) -> str:
         return self.title

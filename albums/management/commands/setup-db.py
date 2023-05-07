@@ -20,7 +20,7 @@ class Command(BaseCommand):
             album = Album.objects.create(title=album['title'],
                                  artist=current_artist[0],
                                  release_date=album['release-date'],
-                                 price=1488,
+                                 price=random.randint(1000, 5000),
                                  duration=album['duration'],
                                  image=album['image'],
                                  tracks=album['tracks'])
