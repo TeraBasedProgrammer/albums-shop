@@ -1,5 +1,5 @@
 import json
-from datetime import datetime
+from datetime import date
 import random
 
 from django.core.management.base import BaseCommand
@@ -18,7 +18,7 @@ class Command(BaseCommand):
             current_genres = [Genre.objects.get_or_create(title=genre) for genre in album['styles']]
             album = Album.objects.create(title=album['title'],
                                 artist=current_artist[0],
-                                release_date=album['release-date'],
+                                release_date=album['release-date'][-4:],
                                 price=random.randint(1000, 5000),
                                 duration=album['duration'],
                                 image=album['image'],

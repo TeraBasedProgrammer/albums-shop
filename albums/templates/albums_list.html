@@ -1,13 +1,41 @@
 <div style="display: flex; justify-content: left;">
     <div style="width: 30%;">
         <h2>Giga nigga based side bar front end is the best</h2>
+        <h3>Search</h3>
         <form action="{% url 'albums-search' %}" method="get">
             <input type="text" name="q">
             <button type="submit">Search</button>
         </form>
+        <h3>Sort by</h3>
+        <form action="{% url 'albums-filter' %}" method="get">
+            <h4>Price</h4>
+            <input type="radio" value="price" name="sort_by">
+            <label for="increase">Ascending</label><br>
+            <input type="radio" value="-price" name="sort_by">
+            <label for="decrease">Descending</label>
+            <br>
+            <br>
+
+            <h4>Release date</h4>
+            <input type="radio" value="release_date" name="sort_by">
+            <label for="increase">Ascending</label><br>
+            <input type="radio" value="-release_date" name="sort_by">
+            <label for="decrease">Descending</label>
+            <br>
+            <button type="submit">Sort</button>
+        </form>
         <form action="{% url 'albums-filter' %}" method="get">
         <div>
-            <h3>Genres</h3>
+            <h3>Filter by</h3>
+            <h4>Decades</h4>
+            <ul>
+            {% for year in view.get_decades_range %}
+                <li>
+                    <input type="checkbox" name="decades" value="{{ year }}"> {{ year }}s
+                </li>
+            {% endfor %}
+            </ul>
+            <h4>Genres</h4>
             <ul>
             {% for genre in view.get_genres %}
                 <li>
@@ -18,7 +46,7 @@
             </ul>
         </div>
         <div>
-            <h3>Artists</h3>
+            <h4>Artists</h4>
             <ul>
             {% for artist in view.get_artists %}
                 <li>

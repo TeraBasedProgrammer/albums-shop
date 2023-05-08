@@ -2,7 +2,7 @@
     <h1>{{ album.title }}</h1>
     <h2>{{ album.artist.title }}</h2>
     <p><strong>Price:</strong> {{ album.price }} грн.</p>
-    <p><strong>Release Date:</strong> {{ album.release_date }}</p>
+    <p><strong>Release Year:</strong> {{ album.release_date }}</p>
     <p><strong>Genres:</strong>
         {% for genre in album.genres.all %}
         {{ genre.title }}

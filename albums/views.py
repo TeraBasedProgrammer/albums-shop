@@ -9,13 +9,16 @@ from .models import Album, Genre, Artist
 from .forms import AlbumModelForm
 
 
-# Alternative for get_context_data() method, retrieves genres and artists data
+# Additional view to add context data to filter sidebar
 class ArtistsGenresData():
     def get_genres(self):
         return Genre.objects.get_ordered_by_title()
     
     def get_artists(self):
         return Artist.objects.get_ordered_by_title()
+    
+    def get_decades_range(self):
+        return range(1950, 2021, 10)
 
 
 
@@ -62,9 +65,19 @@ class AlbumFilterView(ArtistsGenresData, generic.ListView):
     template_name = 'albums_list.html'
 
     def get_queryset(self) -> QuerySet[Any]:
+
         # Retrieving 'True' checkboxes' values from fort GET request
         genres_filters = self.request.GET.getlist("genre")
         artist_filters = self.request.GET.getlist("artist")
+        decade_filters = self.request.GET.getlist("decades")
+
+        sort_query = self.request.GET.get('sort_by')
+
+
+        # Condition to prevent hand-written query parametrs in link
+        allowed_sort_queries = ['price', '-price', 'release_date', '-release_date']
+        if sort_query not in allowed_sort_queries:
+            sort_query = None
 
         kwargs = {}
         if genres_filters: 
@@ -72,8 +85,27 @@ class AlbumFilterView(ArtistsGenresData, generic.ListView):
 
         if artist_filters:
             kwargs["artist__title__in"] = artist_filters
+        
+        # if decade_filters:
+        #     kwargs["release_date__range"] =  (decade_filters[0], int(decade_filters[0]) + 9)
 
-        return Album.objects.filter(**kwargs)
+        args = []
+
+        # Multiple decades filtering
+        if decade_filters:
+            q = Q()
+            for decade in decade_filters:
+                start_year = decade
+                end_year = int(decade) + 9
+                q |= Q(release_date__range=(start_year, end_year))
+                
+            args.append(q) 
+
+        album = Album.objects.filter(
+            *args,
+            **kwargs).order_by('pk' if not sort_query else sort_query)
+        print(len(album))
+        return album
 
 
 class AlbumSearchView(ArtistsGenresData, generic.ListView):
@@ -83,7 +115,6 @@ class AlbumSearchView(ArtistsGenresData, generic.ListView):
     
     def get_queryset(self):
         query = self.request.GET.get("q")
-        print(query)
         object_list = Album.objects.filter(
             Q(title__icontains=query) |
             Q(artist__title__icontains=query)
