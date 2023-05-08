@@ -1,4 +1,5 @@
 from typing import Any
+from functools import reduce
 
 from django.db.models.query import QuerySet
 from django.urls import reverse
@@ -104,7 +105,6 @@ class AlbumFilterView(ArtistsGenresData, generic.ListView):
         album = Album.objects.filter(
             *args,
             **kwargs).order_by('pk' if not sort_query else sort_query)
-        print(len(album))
         return album
 
 
@@ -115,9 +115,14 @@ class AlbumSearchView(ArtistsGenresData, generic.ListView):
     
     def get_queryset(self):
         query = self.request.GET.get("q")
+
+        # object_list = Album.objects.filter(
+        #     Q(title__icontains=query) |
+        #     Q(artist__title__icontains=query)
+        #     ).order_by('artist', 'title')
         object_list = Album.objects.filter(
-            Q(title__icontains=query) |
-            Q(artist__title__icontains=query)
-            )
+                reduce(lambda x, y: x & y, [Q(title__icontains=word) | Q(artist__title__icontains=word) for word in query.split()])
+            ).order_by('artist', 'title')
+
         return object_list
     
