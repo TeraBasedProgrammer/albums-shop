@@ -74,4 +74,19 @@ class AlbumFilterView(ArtistsGenresData, generic.ListView):
             kwargs["artist__title__in"] = artist_filters
 
         return Album.objects.filter(**kwargs)
+
+
+class AlbumSearchView(ArtistsGenresData, generic.ListView):
+    model = Album
+    context_object_name = 'albums'
+    template_name = 'albums_list.html'
+    
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        print(query)
+        object_list = Album.objects.filter(
+            Q(title__icontains=query) |
+            Q(artist__title__icontains=query)
+            )
+        return object_list
     
