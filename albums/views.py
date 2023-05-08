@@ -1,5 +1,4 @@
 from typing import Any
-from functools import reduce
 
 from django.db.models.query import QuerySet
 from django.urls import reverse
@@ -21,23 +20,26 @@ class ArtistsGenresData():
     def get_decades_range(self):
         return range(1950, 2021, 10)
 
+    paginate_by = 10
+
 
 
 
 class AlbumListView(ArtistsGenresData, generic.ListView):
     model = Album
-    template_name='albums_list.html'
+    template_name='albums/albums_list.html'
     context_object_name = 'albums'
+    # paginate_by = 10
 
 
 class AlbumDetailView(generic.DetailView):
     model = Album
-    template_name = 'album_detail.html'
+    template_name = 'albums/album_detail.html'
     context_object_name = 'album'
 
 
 class AlbumCreateView(generic.CreateView):
-    template_name = "album_create.html"
+    template_name = "albums/album_create.html"
     form_class = AlbumModelForm
     
     def get_success_url(self):
@@ -45,7 +47,7 @@ class AlbumCreateView(generic.CreateView):
 
 
 class AlbumDeleteView(generic.DeleteView):
-    template_name = "album_delete.html"
+    template_name = "albums/album_delete.html"
     model = Album
     context_object_name = 'album'
 
@@ -53,7 +55,7 @@ class AlbumDeleteView(generic.DeleteView):
         return reverse("albums-list")
 
 class AlbumUpdateView(generic.UpdateView):
-    template_name = "album_update.html"
+    template_name = "albums/album_update.html"
     form_class = AlbumModelForm
     model = Album
 
@@ -63,7 +65,7 @@ class AlbumUpdateView(generic.UpdateView):
 
 class AlbumFilterView(ArtistsGenresData, generic.ListView):
     context_object_name = 'albums'
-    template_name = 'albums_list.html'
+    template_name = 'albums/albums_list.html'
 
     def get_queryset(self) -> QuerySet[Any]:
 
@@ -111,18 +113,15 @@ class AlbumFilterView(ArtistsGenresData, generic.ListView):
 class AlbumSearchView(ArtistsGenresData, generic.ListView):
     model = Album
     context_object_name = 'albums'
-    template_name = 'albums_list.html'
+    template_name = 'albums/albums_list.html'
     
     def get_queryset(self):
         query = self.request.GET.get("q")
 
-        # object_list = Album.objects.filter(
-        #     Q(title__icontains=query) |
-        #     Q(artist__title__icontains=query)
-        #     ).order_by('artist', 'title')
         object_list = Album.objects.filter(
-                reduce(lambda x, y: x & y, [Q(title__icontains=word) | Q(artist__title__icontains=word) for word in query.split()])
+            Q(title__icontains=query) |
+            Q(artist__title__icontains=query)
             ).order_by('artist', 'title')
-
+        
         return object_list
     
