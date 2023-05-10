@@ -25,6 +25,7 @@ INSTALLED_APPS = [
 
     # Project apps
     'albums',
+    'admin_panel',
 
     # Third-party apps
     'crispy_forms',

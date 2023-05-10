@@ -49,6 +49,17 @@ class AlbumModelForm(forms.ModelForm):
 
         return cleaned_data
 
+class GenreModelForm(forms.ModelForm):
+    class Meta:
+        model = Genre
+        fields = ['title']
+
+
+class ArtistModelForm(forms.ModelForm):
+    class Meta:
+        model = Artist
+        fields = ['title']
+
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:

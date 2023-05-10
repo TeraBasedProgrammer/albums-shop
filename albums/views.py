@@ -6,22 +6,12 @@ from django.views import generic
 from django.db.models import Q
 
 from .models import Album, Genre, Artist
-from .forms import AlbumModelForm, CustomUserCreationForm
+from .forms import AlbumModelForm, ArtistModelForm, GenreModelForm, CustomUserCreationForm
+from .mixins import ArtistsGenresDataMixin
 
 
 # Additional view to add context data to filter sidebar
-class ArtistsGenresData():
-    def get_genres(self):
-        return Genre.objects.get_ordered_by_title()
-    
-    def get_artists(self):
-        return Artist.objects.get_ordered_by_title()
-    
-    def get_decades_range(self):
-        return range(1950, 2021, 10)
-
-    paginate_by = 10
-
+# User views
 
 class SignupView(generic.CreateView):
     template_name = "registration/signup.html"
@@ -35,7 +25,7 @@ class SignupView(generic.CreateView):
         return reverse("login")
 
 
-class AlbumListView(ArtistsGenresData, generic.ListView):
+class AlbumListView(ArtistsGenresDataMixin, generic.ListView):
     model = Album
     template_name='albums/albums_list.html'
     context_object_name = 'albums'
@@ -48,32 +38,7 @@ class AlbumDetailView(generic.DetailView):
     context_object_name = 'album'
 
 
-class AlbumCreateView(generic.CreateView):
-    template_name = "albums/album_create.html"
-    form_class = AlbumModelForm
-    
-    def get_success_url(self):
-        return reverse("albums-list")
-
-
-class AlbumDeleteView(generic.DeleteView):
-    template_name = "albums/album_delete.html"
-    model = Album
-    context_object_name = 'album'
-
-    def get_success_url(self):
-        return reverse("albums-list")
-
-class AlbumUpdateView(generic.UpdateView):
-    template_name = "albums/album_update.html"
-    form_class = AlbumModelForm
-    model = Album
-
-    def get_success_url(self):
-        return reverse("albums-list")
-
-
-class AlbumFilterView(ArtistsGenresData, generic.ListView):
+class AlbumFilterView(ArtistsGenresDataMixin, generic.ListView):
     context_object_name = 'albums'
     template_name = 'albums/albums_list.html'
 
@@ -120,7 +85,7 @@ class AlbumFilterView(ArtistsGenresData, generic.ListView):
         return album
 
 
-class AlbumSearchView(ArtistsGenresData, generic.ListView):
+class AlbumSearchView(ArtistsGenresDataMixin, generic.ListView):
     model = Album
     context_object_name = 'albums'
     template_name = 'albums/albums_list.html'
@@ -134,4 +99,82 @@ class AlbumSearchView(ArtistsGenresData, generic.ListView):
             ).order_by('artist', 'title')
         
         return object_list
+    
+# Admin views
+
+# Albums
+class AlbumCreateView(generic.CreateView):
+    template_name = "albums/album_create.html"
+    form_class = AlbumModelForm
+    
+    def get_success_url(self):
+        return reverse("albums-list")
+
+
+class AlbumDeleteView(generic.DeleteView):
+    template_name = "albums/album_delete.html"
+    model = Album
+    context_object_name = 'model'
+
+    def get_success_url(self):
+        return reverse("albums-list")
+
+
+class AlbumUpdateView(generic.UpdateView):
+    template_name = "albums/album_update.html"
+    form_class = AlbumModelForm
+    model = Album
+
+    def get_success_url(self):
+        return reverse("albums-list")
+    
+# Genres
+class GenreCreateView(generic.CreateView):
+    template_name = "albums/album_create.html"
+    form_class = GenreModelForm
+    
+    def get_success_url(self):
+        return reverse("albums-list")
+
+
+class GenreDeleteView(generic.DeleteView):
+    template_name = "albums/album_delete.html"
+    model = Genre
+    context_object_name = 'model'
+
+    def get_success_url(self):
+        return reverse("albums-list")
+
+class GenreUpdateView(generic.UpdateView):
+    template_name = "albums/album_update.html"
+    form_class = GenreModelForm
+    model = Genre
+
+    def get_success_url(self):
+        return reverse("albums-list")
+    
+# Artists
+class ArtistCreateView(generic.CreateView):
+    template_name = "albums/album_create.html"
+    form_class = ArtistModelForm
+    
+    def get_success_url(self):
+        return reverse("albums-list")
+
+
+class ArtistDeleteView(generic.DeleteView):
+    template_name = "albums/album_delete.html"
+    model = Artist
+    context_object_name = 'model'
+
+    def get_success_url(self):
+        return reverse("albums-list")
+
+class ArtistUpdateView(generic.UpdateView):
+    template_name = "albums/album_update.html"
+    form_class = ArtistModelForm
+    model = Artist
+
+    def get_success_url(self):
+        return reverse("albums-list")
     
