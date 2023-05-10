@@ -1,8 +1,11 @@
 from django import forms
 from django.forms.widgets import DateInput
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserCreationForm, UsernameField
 
 from .models import Album, Genre, Artist
 
+User = get_user_model()
 
 class AlbumModelForm(forms.ModelForm):
     release_date = forms.DateField(widget=DateInput(attrs={'type': 'date'}))
@@ -45,4 +48,18 @@ class AlbumModelForm(forms.ModelForm):
         cleaned_data['tracks'] = tracks_list
 
         return cleaned_data
-        
+
+
+class CustomUserCreationForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ("username",)
+        field_classes = {'username': UsernameField}
+
+    def clean_username(self):
+        username = self.cleaned_data.get("username")
+        if User.objects.filter(username=username).exists():
+            raise forms.ValidationError(
+                "This username is already in use"
+            )
+        return username        

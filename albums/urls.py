@@ -4,11 +4,14 @@ from .views import AlbumListView, AlbumDetailView, AlbumCreateView, AlbumDeleteV
 
 
 urlpatterns = [
+    # User endpoints
     path('', AlbumListView.as_view(), name='albums-list'),
     path('filter/', AlbumFilterView.as_view(), name='albums-filter'),
     path('search/', AlbumSearchView.as_view(), name='albums-search'),
-    path('create/', AlbumCreateView.as_view(), name='album-create'),
     path('<pk>/', AlbumDetailView.as_view(), name='album-detail'),
+
+    # Admin endpoints
+    path('create/', AlbumCreateView.as_view(), name='album-create'),
     path('<pk>/update/', AlbumUpdateView.as_view(), name='album-update'),
     path('<pk>/delete/', AlbumDeleteView.as_view(), name='album-delete'),
 ]

@@ -6,7 +6,7 @@ from django.views import generic
 from django.db.models import Q
 
 from .models import Album, Genre, Artist
-from .forms import AlbumModelForm
+from .forms import AlbumModelForm, CustomUserCreationForm
 
 
 # Additional view to add context data to filter sidebar
@@ -23,6 +23,16 @@ class ArtistsGenresData():
     paginate_by = 10
 
 
+class SignupView(generic.CreateView):
+    template_name = "registration/signup.html"
+    form_class = CustomUserCreationForm
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        return response
+
+    def get_success_url(self):
+        return reverse("login")
 
 
 class AlbumListView(ArtistsGenresData, generic.ListView):

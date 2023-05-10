@@ -1,3 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+
 <div class="album">
     <h1>{{ album.title }}</h1>
     <h2>{{ album.artist.title }}</h2>
@@ -18,3 +22,5 @@
         {% endfor %}
     </ol>
 </div>
+
+{% endblock content %}

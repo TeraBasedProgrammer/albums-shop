@@ -102,7 +102,8 @@ CRISPY_TEMPLATE_PACK = 'tailwind'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'tailwind'
 
-# # New
-# LOGIN_REDIRECT_URL = '/posts/'
-# LOGIN_URL = '/login'
-# LOGOUT_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = '/albums/'
+
+LOGIN_URL = 'login/'
+
+LOGOUT_REDIRECT_URL = "/albums/"
