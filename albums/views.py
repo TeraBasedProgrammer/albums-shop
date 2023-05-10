@@ -7,7 +7,7 @@ from django.db.models import Q
 
 from .models import Album, Genre, Artist
 from .forms import AlbumModelForm, ArtistModelForm, GenreModelForm, CustomUserCreationForm
-from .mixins import ArtistsGenresDataMixin
+from .mixins import ArtistsGenresDataMixin, GetModelNameMixin
 
 
 # Additional view to add context data to filter sidebar
@@ -103,7 +103,7 @@ class AlbumSearchView(ArtistsGenresDataMixin, generic.ListView):
 # Admin views
 
 # Albums
-class AlbumCreateView(generic.CreateView):
+class AlbumCreateView(GetModelNameMixin, generic.CreateView):
     template_name = "albums/album_create.html"
     form_class = AlbumModelForm
     
@@ -111,7 +111,7 @@ class AlbumCreateView(generic.CreateView):
         return reverse("albums-list")
 
 
-class AlbumDeleteView(generic.DeleteView):
+class AlbumDeleteView(GetModelNameMixin, generic.DeleteView):
     template_name = "albums/album_delete.html"
     model = Album
     context_object_name = 'model'
@@ -120,7 +120,7 @@ class AlbumDeleteView(generic.DeleteView):
         return reverse("albums-list")
 
 
-class AlbumUpdateView(generic.UpdateView):
+class AlbumUpdateView(GetModelNameMixin, generic.UpdateView):
     template_name = "albums/album_update.html"
     form_class = AlbumModelForm
     model = Album
@@ -129,7 +129,7 @@ class AlbumUpdateView(generic.UpdateView):
         return reverse("albums-list")
     
 # Genres
-class GenreCreateView(generic.CreateView):
+class GenreCreateView(GetModelNameMixin, generic.CreateView):
     template_name = "albums/album_create.html"
     form_class = GenreModelForm
     
@@ -137,7 +137,7 @@ class GenreCreateView(generic.CreateView):
         return reverse("albums-list")
 
 
-class GenreDeleteView(generic.DeleteView):
+class GenreDeleteView(GetModelNameMixin, generic.DeleteView):
     template_name = "albums/album_delete.html"
     model = Genre
     context_object_name = 'model'
@@ -145,7 +145,7 @@ class GenreDeleteView(generic.DeleteView):
     def get_success_url(self):
         return reverse("albums-list")
 
-class GenreUpdateView(generic.UpdateView):
+class GenreUpdateView(GetModelNameMixin, generic.UpdateView):
     template_name = "albums/album_update.html"
     form_class = GenreModelForm
     model = Genre
@@ -154,7 +154,7 @@ class GenreUpdateView(generic.UpdateView):
         return reverse("albums-list")
     
 # Artists
-class ArtistCreateView(generic.CreateView):
+class ArtistCreateView(GetModelNameMixin, generic.CreateView):
     template_name = "albums/album_create.html"
     form_class = ArtistModelForm
     
@@ -162,7 +162,7 @@ class ArtistCreateView(generic.CreateView):
         return reverse("albums-list")
 
 
-class ArtistDeleteView(generic.DeleteView):
+class ArtistDeleteView(GetModelNameMixin, generic.DeleteView):
     template_name = "albums/album_delete.html"
     model = Artist
     context_object_name = 'model'
@@ -170,7 +170,7 @@ class ArtistDeleteView(generic.DeleteView):
     def get_success_url(self):
         return reverse("albums-list")
 
-class ArtistUpdateView(generic.UpdateView):
+class ArtistUpdateView(GetModelNameMixin, generic.UpdateView):
     template_name = "albums/album_update.html"
     form_class = ArtistModelForm
     model = Artist

@@ -10,7 +10,7 @@ class GenreArtistManager(models.Manager):
 
 
 class Artist(models.Model):
-    title = models.CharField(max_length=75)
+    title = models.CharField(max_length=75, validators=[validate_text])
 
     objects = GenreArtistManager()
     def __str__(self) -> str:
@@ -18,7 +18,7 @@ class Artist(models.Model):
 
 
 class Genre(models.Model):
-    title = models.CharField(max_length=75)
+    title = models.CharField(max_length=75, validators=[validate_text])
     
     objects = GenreArtistManager()
     
