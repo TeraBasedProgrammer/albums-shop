@@ -7,19 +7,19 @@ from .models import Album, Genre, Artist
 
 User = get_user_model()
 
+
 class AlbumModelForm(forms.ModelForm):
     release_date = forms.DateField(widget=DateInput(attrs={'type': 'date'}))
     duration = forms.DurationField(widget=forms.TextInput(attrs={'placeholder': ''}))
     tracks = forms.CharField(label="Tracks",
-                                widget=forms.Textarea()) 
+                             widget=forms.Textarea())
     genres = forms.ModelMultipleChoiceField(
             widget=forms.SelectMultiple(),
             queryset=Genre.objects.get_ordered_by_title(),
             required=True,
         )
     artist = forms.ModelChoiceField(queryset=Artist.objects.get_ordered_by_title(),
-                               required=True)
-
+                                    required=True)
 
     class Meta:
         model = Album
@@ -41,13 +41,13 @@ class AlbumModelForm(forms.ModelForm):
         release_date = cleaned_data.get('release_date')
         cleaned_data['release_date'] = release_date.strftime('%B %d, %Y')
 
-
         # Convert tracks string into list
         tracks = cleaned_data.get('tracks')
         tracks_list = [track for track in tracks.split('\r\n')]
         cleaned_data['tracks'] = tracks_list
 
         return cleaned_data
+
 
 class GenreModelForm(forms.ModelForm):
     class Meta:
@@ -73,4 +73,4 @@ class CustomUserCreationForm(UserCreationForm):
             raise forms.ValidationError(
                 "This username is already in use"
             )
-        return username        
+        return username

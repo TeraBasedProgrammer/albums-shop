@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content%}
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+    </style>
+    <h1 style="text-align: center;">Genres data</h1>
+    <div style="width: 25%; margin: 0 auto">
+        <table style="border-collapse: collapse; background-color: aqua; border: 1px solid black;">
+            <a href="{% url 'albums:genre-create' %}"><button>Create new genre</button></a>
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for genre in genres %}
+                <tr>
+                    <td>"{{ genre.title }}"</td>
+                    <td><a href="{% url 'albums:genre-update' genre.pk %}"><button>Update</button></a></td>
+                    <td><a href="{% url 'albums:genre-delete' genre.pk %}"><button>Delete</button></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+{% endblock content %}

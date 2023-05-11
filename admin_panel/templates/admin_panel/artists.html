@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content%}
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+    </style>
+    <h1 style="text-align: center;">Artists data</h1>
+    <div style="width: 25%; margin: 0 auto">
+        <table style="border-collapse: collapse; background-color: aqua; border: 1px solid black;">
+            <a href="{% url 'albums:artist-create' %}"><button>Create new artist</button></a>
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for artist in artists %}
+                <tr>
+                    <td>"{{ artist.title }}"</td>
+                    <td><a href="{% url 'albums:artist-update' artist.pk %}"><button>Update</button></a></td>
+                    <td><a href="{% url 'albums:artist-delete' artist.pk %}"><button>Delete</button></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+{% endblock content %}

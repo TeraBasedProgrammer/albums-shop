@@ -8,11 +8,11 @@ class GenreArtistManager(models.Manager):
         return self.all().order_by('title')
 
 
-
 class Artist(models.Model):
-    title = models.CharField(max_length=75, validators=[validate_text])
+    title = models.CharField(max_length=75, validators=[validate_text], unique=True)
 
     objects = GenreArtistManager()
+
     def __str__(self) -> str:
         return self.title
 

@@ -1,27 +1,25 @@
 {% load static %}
 <header style="background-color: cornflowerblue;">
     <div style="display: flex; justify-content: left;">
-        <a href="{% url 'albums:albums:list' %}"><h2>Albums shop</h2></a>
-    </a>
-      <nav style="display: flex; justify-content: center;  margin-left: 150;">
+        <a href="{% url 'albums:albums-list' %}"><h2>Albums shop</h2></a>
+      <nav style="display: flex; justify-content: center;  margin-left: 150px;">
         {% if not request.user.is_authenticated %}
-          <a  href="{% url 'signup' %}" style="margin-right: 100;">Signup</a>
+          <a  href="{% url 'signup' %}" style="margin-right: 100px;">Signup</a>
         {% else %}
-          <a style=" margin-right: 100;" href="{% url 'albums:albums-list' %}" class="">Albums</a>
+          <a style="margin-right: 100px;" href="{% url 'albums:albums-list' %}" class="">Albums</a>
       </nav>
         {% endif %}
-      </nav>
       {% if request.user.is_staff %}
-         <a style="margin-right: 100;" href="{% url 'admin-panel:main-page' %}">Admin panel</a>
+         <a style="margin-right: 100px;" href="{% url 'admin-panel:main-page' %}">Admin panel</a>
       {% endif %}
       
       {% if request.user.is_authenticated %}
-        <a style=" margin-right: 100;" href="#">Logged in as: {{ request.user.username }}</a>
+        <a style=" margin-right: 100px;" href="#">Logged in as: {{ request.user.username }}</a>
         <a href="{% url 'logout' %}" >
           Logout
         </a>
       {% else %}
-      <a href="{% url 'login' %}" style=" margin-right: 100;">
+      <a href="{% url 'login' %}" style=" margin-right: 100px;">
           Login
       </a>
     {% endif %}
