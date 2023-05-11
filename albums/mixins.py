@@ -1,7 +1,18 @@
+from django.contrib.auth.mixins import AccessMixin
+from django.core.exceptions import PermissionDenied
+from django.shortcuts import redirect
+
 from .models import Genre, Artist
 
 
-class ArtistsGenresDataMixin():
+class AdminRequiredMixin(AccessMixin):
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff or not request.user.is_authenticated:
+            raise PermissionDenied()
+        return super().dispatch(request)
+
+
+class ArtistsGenresDataMixin:
     def get_genres(self):
         return Genre.objects.get_ordered_by_title()
     
@@ -14,8 +25,9 @@ class ArtistsGenresDataMixin():
     # Page size variable
     paginate_by = 10
 
+
 # Get model name to dynamic template naming
-class GetModelNameMixin():
+class GetModelNameMixin:
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         try:
