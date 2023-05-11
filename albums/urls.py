@@ -5,6 +5,7 @@ from .views import (AlbumListView, AlbumDetailView , AlbumFilterView, AlbumSearc
                     GenreUpdateView, GenreDeleteView, ArtistDeleteView, ArtistCreateView,
                     ArtistUpdateView)
 
+app_name = 'albums'
 
 urlpatterns = [
     # User endpoints (only albums)

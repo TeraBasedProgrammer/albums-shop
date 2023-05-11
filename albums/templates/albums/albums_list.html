@@ -5,12 +5,12 @@
     <div style="width: 30%;">
         <h2>Giga nigga based side bar front end is the best</h2>
         <h3>Search</h3>
-        <form action="{% url 'albums-search' %}" method="get">
+        <form action="{% url 'albums:albums-search' %}" method="get">
             <input type="text" name="q">
             <button type="submit">Search</button>
         </form>
         <h3>Sort by</h3>
-        <form action="{% url 'albums-filter' %}" method="get">
+        <form action="{% url 'albums:albums-filter' %}" method="get">
             <h4>Price</h4>
             <input type="radio" value="price" name="sort_by">
             <label for="increase">Ascending</label><br>
@@ -27,7 +27,7 @@
             <br>
             <button type="submit">Sort</button>
         </form>
-        <form action="{% url 'albums-filter' %}" method="get">
+        <form action="{% url 'albums:albums-filter' %}" method="get">
         <div>
             <h3>Filter by</h3>
             <h4>Decades</h4>
@@ -66,8 +66,8 @@
     {% for album in albums %}
         <div style="width: max-content; padding: 10px; height: max-content;">
             <div class="album">
-                <a href="{% url 'album-detail' album.pk %}"><img src="{{ album.image }}" alt="{{ album.title }}"></a>
-                <a href="{% url 'album-detail' album.pk %}"><h3>{{ album.title }}</h3></a>
+                <a href="{% url 'albums:album-detail' album.pk %}"><img src="{{ album.image }}" alt="{{ album.title }}"></a>
+                <a href="{% url 'albums:album-detail' album.pk %}"><h3>{{ album.title }}</h3></a>
                 <p>{{ album.artist.title }}</p>
                 <p>Price: {{ album.price }}</p>
             </div>

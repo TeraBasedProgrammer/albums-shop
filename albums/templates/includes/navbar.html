@@ -1,18 +1,18 @@
 {% load static %}
 <header style="background-color: cornflowerblue;">
     <div style="display: flex; justify-content: left;">
-        <h2>Albums shop</h2>
+        <a href="{% url 'albums:albums:list' %}"><h2>Albums shop</h2></a>
     </a>
       <nav style="display: flex; justify-content: center;  margin-left: 150;">
         {% if not request.user.is_authenticated %}
           <a  href="{% url 'signup' %}" style="margin-right: 100;">Signup</a>
         {% else %}
-          <a style=" margin-right: 100;" href="{% url 'albums-list' %}" class="">Albums</a>
+          <a style=" margin-right: 100;" href="{% url 'albums:albums-list' %}" class="">Albums</a>
       </nav>
         {% endif %}
       </nav>
       {% if request.user.is_staff %}
-         <a style="margin-right: 100;" href="#">Admin panel</a>
+         <a style="margin-right: 100;" href="{% url 'admin-panel:main-page' %}">Admin panel</a>
       {% endif %}
       
       {% if request.user.is_authenticated %}

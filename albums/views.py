@@ -124,6 +124,7 @@ class AlbumUpdateView(GetModelNameMixin, generic.UpdateView):
     template_name = "albums/album_update.html"
     form_class = AlbumModelForm
     model = Album
+    context_object_name = 'model'
 
     def get_success_url(self):
         return reverse("albums-list")
@@ -149,6 +150,7 @@ class GenreUpdateView(GetModelNameMixin, generic.UpdateView):
     template_name = "albums/album_update.html"
     form_class = GenreModelForm
     model = Genre
+    context_object_name = 'model'
 
     def get_success_url(self):
         return reverse("albums-list")
@@ -174,6 +176,7 @@ class ArtistUpdateView(GetModelNameMixin, generic.UpdateView):
     template_name = "albums/album_update.html"
     form_class = ArtistModelForm
     model = Artist
+    context_object_name = 'model'
 
     def get_success_url(self):
         return reverse("albums-list")

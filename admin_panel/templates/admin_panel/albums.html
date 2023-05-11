@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<style>
+  table {
+    border-collapse: collapse;
+  }
+
+  th, td {
+    border: 1px solid black;
+    padding: 8px;
+  }
+</style>
+<h1 style="text-align: center;">Albums data</h1>
+<div style="width: 75%; margin: 0 auto">
+<table style="border-collapse: collapse; background-color: aqua; border: 1px solid black;">
+<a href="{% url 'albums:album-create' %}"><button>Create new album</button></a>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Release date</th>
+      <th>Duration</th>
+      <th>Image</th>
+      <th>Tracks</th>
+      <th>Price</th>
+      <th>Artist</th>
+      <th>Genres</th>
+      <th>Update</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for album in albums %}
+      <tr>
+        <td>"{{ album.title }}"</td>
+        <td>{{ album.release_date }}</td>
+        <td>{{ album.duration }}</td>
+        <td><img src="{{ album.image }}" style="width: 150px; height: 150px;"></td>
+        <td>
+          {% for track in album.tracks%}
+              "{{track}}",
+          {% endfor %}
+        </td>
+        <td>{{ album.price }} грн.</td>
+        <td>{{ album.artist }}</td>
+        <td>
+          {% for genre in album.genres.all %}
+            {{genre.title}}, 
+          {% endfor %}
+        </td>
+        <td><a href="{% url 'albums:album-update' album.pk %}"><button>Update</button></a></td>
+        <td><a href="{% url 'albums:album-delete' album.pk %}"><button>Delete</button></a></td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+</div>
+<div style=" width: max-content; margin: 30 auto;">
+{% include 'includes/pagination.html' %}
+</div>
+{% endblock content %}
