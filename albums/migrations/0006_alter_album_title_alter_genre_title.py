@@ -21,4 +21,9 @@ class Migration(migrations.Migration):
             name='title',
             field=models.CharField(max_length=75, validators=[albums.validators.validate_text]),
         ),
+        migrations.AlterField(
+            model_name='artist',
+            name='title',
+            field=models.CharField(max_length=75, validators=[albums.validators.validate_text]),
+        ),
     ]

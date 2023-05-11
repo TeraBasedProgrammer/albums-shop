@@ -1,9 +1,7 @@
-from typing import Any, Dict
-
 from django.views import generic
-from django.urls import reverse 
 
 from albums.models import Album, Genre, Artist
+from albums.views import AlbumSearchView
 
 
 class MainView(generic.TemplateView):
@@ -16,17 +14,21 @@ class AlbumsDataView(generic.ListView):
     context_object_name = 'albums'
     
     paginate_by = 20
+
+
+class AlbumsDataSearchView(AlbumSearchView):
+    template_name = 'admin_panel/albums.html'
     
 
 class GenresDataView(generic.ListView):
     template_name = 'admin_panel/genres.html'
-    queryset = Genre.objects.all()
+    queryset = Genre.objects.get_ordered_by_title()
     context_object_name = 'genres'
 
 
 class ArtistsDataView(generic.ListView):
     template_name = 'admin_panel/artists.html'
-    queryset = Artist.objects.all()
+    queryset = Artist.objects.get_ordered_by_title()
     context_object_name = 'artists'
 
 
