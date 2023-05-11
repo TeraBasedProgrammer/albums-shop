@@ -1,6 +1,6 @@
 from django.db import models
 
-from .validators import validate_text
+from .validators import validate_text, validate_release_date
 
 
 class GenreArtistManager(models.Manager):
@@ -9,7 +9,7 @@ class GenreArtistManager(models.Manager):
 
 
 class Artist(models.Model):
-    title = models.CharField(max_length=75, validators=[validate_text], unique=True)
+    title = models.CharField(max_length=75, validators=[validate_text])
 
     objects = GenreArtistManager()
 
@@ -29,7 +29,7 @@ class Genre(models.Model):
 class Album(models.Model):
     # General fields
     title = models.CharField(max_length=75, validators=[validate_text])
-    release_date = models.CharField(max_length=30, blank=True)
+    release_date = models.CharField(max_length=30, blank=True, validators=[validate_release_date])
     duration = models.CharField(max_length=10, blank=True)
     image = models.URLField()    
     tracks = models.JSONField()

@@ -9,7 +9,6 @@ User = get_user_model()
 
 
 class AlbumModelForm(forms.ModelForm):
-    release_date = forms.DateField(widget=DateInput(attrs={'type': 'date'}))
     duration = forms.DurationField(widget=forms.TextInput(attrs={'placeholder': ''}))
     tracks = forms.CharField(label="Tracks",
                              widget=forms.Textarea())
@@ -34,12 +33,15 @@ class AlbumModelForm(forms.ModelForm):
             'artist',
         )
 
+    def clean_title(self):
+        title = self.cleaned_data.get('title')
+        album = Album.objects.filter(title__iexact=title).exists()
+        if album:
+            raise forms.ValidationError('Альбом з такою назвою вже існує')
+        return title
+
     def clean(self):
         cleaned_data = super().clean()
-
-        # Convert date into proper format
-        release_date = cleaned_data.get('release_date')
-        cleaned_data['release_date'] = release_date.strftime('%B %d, %Y')
 
         # Convert tracks string into list
         tracks = cleaned_data.get('tracks')
@@ -54,11 +56,25 @@ class GenreModelForm(forms.ModelForm):
         model = Genre
         fields = ['title']
 
+    def clean_title(self):
+        title = self.cleaned_data.get('title')
+        album = Genre.objects.filter(title__iexact=title).exists()
+        if album:
+            raise forms.ValidationError('Жанр з такою назвою вже існує')
+        return title
+
 
 class ArtistModelForm(forms.ModelForm):
     class Meta:
         model = Artist
         fields = ['title']
+
+    def clean_title(self):
+        title = self.cleaned_data.get('title')
+        album = Artist.objects.filter(title__iexact=title).exists()
+        if album:
+            raise forms.ValidationError('Артист з таким ім\'ям уже існує')
+        return title
 
 
 class CustomUserCreationForm(UserCreationForm):
