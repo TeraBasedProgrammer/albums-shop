@@ -4,7 +4,6 @@ from django.db.models import Model
 import albums.models as models
 
 
-
 class Command(BaseCommand):
     def handle(self, *args, **options):
 

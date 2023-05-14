@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     # Project apps
     'albums',
     'admin_panel',
+    'orders',
 
     # Third-party apps
     'crispy_forms',
@@ -105,6 +106,6 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = 'tailwind'
 
 LOGIN_REDIRECT_URL = '/albums/'
 
-LOGIN_URL = 'login/'
+LOGIN_URL = '/login/'
 
-LOGOUT_REDIRECT_URL = "/albums/"
+LOGOUT_REDIRECT_URL = '/albums/'

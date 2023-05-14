@@ -34,6 +34,7 @@ class Album(models.Model):
     image = models.URLField()    
     tracks = models.JSONField()
     price = models.IntegerField()
+    count = models.IntegerField(default=10000)
 
     # One-to-many fields
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)

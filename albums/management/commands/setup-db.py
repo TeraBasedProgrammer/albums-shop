@@ -17,11 +17,11 @@ class Command(BaseCommand):
             current_artist = Artist.objects.get_or_create(title=album['artist'])
             current_genres = [Genre.objects.get_or_create(title=genre) for genre in album['styles']]
             album = Album.objects.create(title=album['title'],
-                                artist=current_artist[0],
-                                release_date=album['release-date'][-4:],
-                                price=random.randint(1000, 5000),
-                                duration=album['duration'],
-                                image=album['image'],
-                                tracks=album['tracks'])
+                                         artist=current_artist[0],
+                                         release_date=album['release-date'][-4:],
+                                         price=random.randint(1000, 5000),
+                                         duration=album['duration'],
+                                         image=album['image'],
+                                         tracks=album['tracks'])
             album.genres.set([genre[0] for genre in current_genres])
         

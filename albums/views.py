@@ -8,6 +8,7 @@ from django.db.models import Q
 from .models import Album, Genre, Artist
 from .forms import AlbumModelForm, ArtistModelForm, GenreModelForm, CustomUserCreationForm
 from .mixins import ArtistsGenresDataMixin, GetModelNameMixin, AdminRequiredMixin
+from orders.models import CartItem
 
 
 # Additional view to add context data to filter sidebar
@@ -29,13 +30,17 @@ class AlbumListView(ArtistsGenresDataMixin, generic.ListView):
     model = Album
     template_name = 'albums/albums_list.html'
     context_object_name = 'albums'
-    # paginate_by = 10
 
 
 class AlbumDetailView(generic.DetailView):
     model = Album
     template_name = 'albums/album_detail.html'
     context_object_name = 'album'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['cart_item'] = CartItem.objects.filter(album__pk=context['album'].pk)
+        return context
 
 
 class AlbumFilterView(ArtistsGenresDataMixin, generic.ListView):

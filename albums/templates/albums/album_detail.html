@@ -21,6 +21,35 @@
         <li>{{ track }}</li>
         {% endfor %}
     </ol>
+<div style="display: flex">
+{#    Check if this item is already in cart#}
+    {% if cart_item %}
+        <a href="{% url 'orders:cart' %}"><button
+                {% if not request.user.is_authenticated %}
+                disabled=""
+                {% endif %}
+                style="width: 150px; height: 40px; background-color: darkturquoise">
+            View in cart
+        </button></a>
+    {% else %}
+    <form action="{% url 'orders:cart-item-create' %}" method="post">
+        {% csrf_token %}
+        {#    Passing album primary key in POST request#}
+        <input type="hidden" name="album_pk" value="{{ album.pk }}">
+
+        <div style="display: flex">
+            <input type="number" min="1" name="quantity" max="1000" value="1">
+            <button type="submit"
+                    {% if not request.user.is_authenticated %}
+                    disabled=""
+                    {% endif %}  style="width: 150px; height: 40px; background-color: darkturquoise">Add to cart</button>
+            {% if not request.user.is_authenticated %}
+                <p style="color: red; font-size: 18px; margin-left:10px">You have to log in to buy this album</p>
+            {% endif %}
+        </div>
+    </form>
+    {% endif %}
+</div>
 </div>
 
 {% endblock content %}

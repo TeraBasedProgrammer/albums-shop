@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+{% block content %}
+    <h1 style="text-align: center">Cart</h1>
+    {% if not cart_items %}
+        <h1>Your cart is empty</h1>
+        {% else %}
+            <style>
+                table {
+                    border-collapse: collapse;
+                }
+
+                th, td {
+                    border: 1px solid black;
+                    padding: 8px;
+                }
+            </style>
+            <div style="width: 75%; margin: 0 auto">
+                <table style="border-collapse: collapse; background-color: aqua; border: 1px solid black;">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Image</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in cart_items %}
+                        <tr>
+                            <td><a href="{% url 'albums:album-detail' item.album.pk %}">"{{ item.album.title }}"</a></td>
+                            <td><img src="{{ item.album.image }}" style="width: 150px; height: 150px;"></td>
+                            <td>{{ item.album.price }} грн.</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>
+                                <form action="{% url 'orders:cart-item-remove' %}" method="post">
+                                    <input hidden="hidden" name="item_pk" value="{{ item.pk }}">
+                                    {% csrf_token %}
+                                    <button>Remove from cart</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            <h1>Total price:
+                {% with total_price=cart_items|calculate_total %}
+                    {{ total_price }} грн.
+                {% endwith %}
+            </h1>
+            <button style="width: 150px; height: 45px">Make an order</button>
+            </div>
+    {% endif %}
+
+{% endblock content %}

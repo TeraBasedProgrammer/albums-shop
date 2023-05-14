@@ -14,7 +14,8 @@
       {% endif %}
       
       {% if request.user.is_authenticated %}
-        <a style=" margin-right: 100px;" href="#">Logged in as: {{ request.user.username }}</a>
+        <p style=" margin-right: 100px;">Logged in as: {{ request.user.username }}</p>
+          <a href="{% url 'orders:cart' %}" style=" margin-right: 100px;">Cart</a>
         <a href="{% url 'logout' %}" >
           Logout
         </a>
