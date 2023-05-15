@@ -36,7 +36,7 @@
                             <td>{{ item.quantity }}</td>
                             <td>
                                 <form action="{% url 'orders:cart-item-remove' %}" method="post">
-                                    <input hidden="hidden" name="item_pk" value="{{ item.pk }}">
+                                    <input type="hidden" name="item_pk" value="{{ item.pk }}">
                                     {% csrf_token %}
                                     <button>Remove from cart</button>
                                 </form>
@@ -48,9 +48,13 @@
             <h1>Total price:
                 {% with total_price=cart_items|calculate_total %}
                     {{ total_price }} грн.
-                {% endwith %}
             </h1>
-            <button style="width: 150px; height: 45px">Make an order</button>
+            <form action="{% url 'orders:order-create' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="total_price" value="{{ total_price }}">
+                <button type="submit" style="width: 150px; height: 45px">Make an order</button>
+            </form>
+                {% endwith %}
             </div>
     {% endif %}
 

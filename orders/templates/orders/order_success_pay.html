@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Order was successfully paid!</h1>
+    <p>Administrator will soon confirm it</p>
+    <a href="{% url 'albums:albums-list' %}"><button>Return to main page</button></a>
+{% endblock content %}
