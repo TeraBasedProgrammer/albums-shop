@@ -48,10 +48,40 @@ def order_pay_view(request, pk):
 
 def order_success_pay_view(request, pk):
     if request.method == 'POST':
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden()
         order = get_object_or_404(Order, pk=pk)
         order.is_paid = True
         order.save()
+
+        # Clean cart
+        CartItem.objects.filter(user=request.user).delete()
         return render(request, 'orders/order_success_pay.html')
+    else:
+        return HttpResponseNotAllowed(['POST'])
+
+
+def order_confirm_view(request, pk):
+    if request.method == 'POST':
+        if not request.user.is_authenticated or not request.user.is_staff:
+            return HttpResponseForbidden()
+        order = get_object_or_404(Order, pk=pk)
+        order.is_confirmed = True
+        order.save()
+
+        return redirect('admin-panel:unconfirmed-orders')
+    else:
+        return HttpResponseNotAllowed(['POST'])
+
+
+def order_discard_view(request, pk):
+    if request.method == 'POST':
+        if not request.user.is_authenticated or not request.user.is_staff:
+            return HttpResponseForbidden()
+        order = get_object_or_404(Order, pk=pk)
+        order.delete()
+
+        return redirect('admin-panel:unconfirmed-orders')
     else:
         return HttpResponseNotAllowed(['POST'])
 
@@ -69,8 +99,6 @@ def cart_item_create_view(request):
         return redirect('albums:album-detail', pk=album_pk)
     else:
         return HttpResponseNotAllowed(['POST'])
-
-
 
 
 def cart_item_remove_view(request):

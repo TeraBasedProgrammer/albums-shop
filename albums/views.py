@@ -39,7 +39,7 @@ class AlbumDetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['cart_item'] = CartItem.objects.filter(album__pk=context['album'].pk)
+        context['cart_item'] = CartItem.objects.filter(user=self.request.user, album__pk=context['album'].pk)
         return context
 
 

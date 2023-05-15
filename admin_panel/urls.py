@@ -1,6 +1,8 @@
 from django.urls import path
 
-from .views import MainView, AlbumsDataView, GenresDataView, ArtistsDataView, AlbumsDataSearchView
+from .views import (MainView, AlbumsDataView, GenresDataView,
+                    ArtistsDataView, AlbumsDataSearchView, UnconfirmedOrdersDataView,
+                    ConfirmedOrdersDataView)
 
 app_name = 'admin-panel'
 
@@ -10,4 +12,6 @@ urlpatterns = [
     path('albums/search/', AlbumsDataSearchView.as_view(), name='albums-data-search'),
     path('genres/', GenresDataView.as_view(), name='genres-data'),
     path('artists/', ArtistsDataView.as_view(), name='artists-data'),
+    path('unconfirmed-orders/', UnconfirmedOrdersDataView.as_view(), name='unconfirmed-orders'),
+    path('confirmed-orders/', ConfirmedOrdersDataView.as_view(), name='confirmed-orders'),
 ]

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content%}
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+    </style>
+    <h1 style="text-align: center;">Confirmed orders data</h1>
+    <div style="width: 75%; margin: 0 auto">
+        <table style="border-collapse: collapse; background-color: aqua; border: 1px solid black;">
+            <thead>
+            <tr>
+                <th>User</th>
+                <th>Total price</th>
+                <th>Paid</th>
+                <th>Albums</th>
+                <th>Time</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td>{{ order.user.username }}</td>
+                    <td>{{ order.total_price }} грн.</td>
+                    <td>{{order.is_paid}}</td>
+                    <td>
+                        {% for album in order.albums.all %}
+                            {{ album.title }},
+                        {% endfor %}
+                    </td>
+                    <td>{{ order.created_at }} </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+    <div style=" width: max-content; margin: 30px auto;">
+        {% include 'includes/pagination.html' %}
+    </div>
+{% endblock content %}
