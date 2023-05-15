@@ -109,3 +109,6 @@ LOGIN_REDIRECT_URL = '/albums/'
 LOGIN_URL = '/login/'
 
 LOGOUT_REDIRECT_URL = '/albums/'
+
+# Changing default app user model
+AUTH_USER_MODEL = 'orders.CustomUser'

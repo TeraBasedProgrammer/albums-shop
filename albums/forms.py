@@ -1,10 +1,8 @@
 from django import forms
-from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UsernameField
 
 from .models import Album, Genre, Artist
-
-User = get_user_model()
+from orders.models import CustomUser
 
 
 class AlbumModelForm(forms.ModelForm):
@@ -78,13 +76,13 @@ class ArtistModelForm(forms.ModelForm):
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
-        model = User
+        model = CustomUser
         fields = ("username",)
         field_classes = {'username': UsernameField}
 
     def clean_username(self):
         username = self.cleaned_data.get("username")
-        if User.objects.filter(username=username).exists():
+        if CustomUser.objects.filter(username=username).exists():
             raise forms.ValidationError(
                 "This username is already in use"
             )

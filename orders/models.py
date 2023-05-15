@@ -1,17 +1,21 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser, User
 from django.db import models
 
 from albums.models import Album
 
 
+class CustomUser(AbstractUser):
+    is_banned = models.BooleanField(default=False)
+
+
 class CartItem(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
 
 
 class Order(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     total_price = models.PositiveIntegerField()
     is_paid = models.BooleanField(default=False)
     is_confirmed = models.BooleanField(default=False)

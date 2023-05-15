@@ -2,7 +2,7 @@ from django.views import generic
 
 from albums.models import Album, Genre, Artist
 from albums.views import AlbumSearchView
-from albums.mixins import  AdminRequiredMixin
+from albums.mixins import AdminRequiredMixin
 from orders.models import Order
 
 

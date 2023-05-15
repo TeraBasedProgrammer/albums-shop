@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import (AlbumListView, AlbumDetailView , AlbumFilterView, AlbumSearchView, 
+from .views import (AlbumListView, AlbumDetailView, AlbumFilterView, AlbumSearchView,
                     AlbumCreateView, AlbumUpdateView, AlbumDeleteView, GenreCreateView,
                     GenreUpdateView, GenreDeleteView, ArtistDeleteView, ArtistCreateView,
                     ArtistUpdateView)
