@@ -3,7 +3,7 @@ from django.views import generic
 from albums.models import Album, Genre, Artist
 from albums.views import AlbumSearchView
 from albums.mixins import AdminRequiredMixin
-from orders.models import Order
+from orders.models import Order, CustomUser
 
 
 class MainView(AdminRequiredMixin, generic.TemplateView):
@@ -32,6 +32,12 @@ class ArtistsDataView(AdminRequiredMixin, generic.ListView):
     template_name = 'admin_panel/artists.html'
     queryset = Artist.objects.get_ordered_by_title()
     context_object_name = 'artists'
+
+
+class UsersBlacklistView(AdminRequiredMixin, generic.ListView):
+    template_name = 'admin_panel/blacklist.html'
+    queryset = CustomUser.objects.filter(is_banned=True)
+    context_object_name = 'users'
 
 
 class UnconfirmedOrdersDataView(AdminRequiredMixin, generic.ListView):

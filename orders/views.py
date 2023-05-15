@@ -4,7 +4,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.views import generic
 
 
-from .models import CartItem, Order
+from .models import CartItem, Order, CustomUser
 from albums.models import Album
 
 
@@ -113,3 +113,28 @@ def cart_item_remove_view(request):
     else:
         return HttpResponseNotAllowed(['POST'])
 
+
+def user_ban_view(request, pk):
+    if request.method == 'POST':
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden()
+
+        user = get_object_or_404(CustomUser, pk=pk)
+        user.is_banned = True
+        user.save()
+        return redirect('admin-panel:unconfirmed-orders')
+    else:
+        return HttpResponseNotAllowed(['POST'])
+
+
+def user_unban_view(request, pk):
+    if request.method == 'POST':
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden()
+
+        user = get_object_or_404(CustomUser, pk=pk)
+        user.is_banned = False
+        user.save()
+        return redirect('admin-panel:blacklist')
+    else:
+        return HttpResponseNotAllowed(['POST'])

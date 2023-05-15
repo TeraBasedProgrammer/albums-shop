@@ -41,7 +41,7 @@
                     <td>
                         <form action="{% url 'orders:order-confirm' order.pk %}" method="post">
                         {% csrf_token %}
-                        <button {% if not order.is_paid %}
+                        <button {% if not order.is_paid or order.user.is_banned %}
                                 disabled=""
                                 {% endif %}
                         >Confirm order</button>
@@ -50,12 +50,17 @@
                     <td>
                         <form action="{% url 'orders:order-discard' order.pk %}" method="post">
                             {% csrf_token %}
-                            <button>Discard order</button>
+                            <button {% if order.is_paid  %}
+                            disabled=""
+                            {% endif %}>
+                                Discard order
+                            </button>
                         </form>
                     </td>
                     <td>
-                        <form action="" method="post">
-                        <button {% if order.user == request.user %}
+                        <form action="{% url 'orders:user-ban' order.user.pk %}" method="post">
+                        {% csrf_token %}
+                        <button {% if order.user == request.user or order.user.is_banned or order.is_paid%}
                         disabled=""
                         {% endif %}>
                             Ban user
