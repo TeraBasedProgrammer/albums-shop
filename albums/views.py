@@ -8,7 +8,7 @@ from django.db.models import Q
 from .models import Album, Genre, Artist
 from .forms import AlbumModelForm, ArtistModelForm, GenreModelForm, CustomUserCreationForm
 from .mixins import ArtistsGenresDataMixin, GetModelNameMixin, AdminRequiredMixin
-from orders.models import CartItem
+from orders.models import CartItem, Order
 
 
 # Additional view to add context data to filter sidebar

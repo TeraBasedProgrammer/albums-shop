@@ -58,7 +58,7 @@
                         </form>
                     </td>
                     <td>
-                        <form action="{% url 'orders:user-ban' order.user.pk %}" method="post">
+                        <form action="{% url 'orders:user-ban' order.user.username %}" method="post">
                         {% csrf_token %}
                         <button {% if order.user == request.user or order.user.is_banned or order.is_paid%}
                         disabled=""

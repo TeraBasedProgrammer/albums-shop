@@ -80,10 +80,10 @@ class CustomUserCreationForm(UserCreationForm):
         fields = ("username",)
         field_classes = {'username': UsernameField}
 
-    def clean_username(self):
-        username = self.cleaned_data.get("username")
-        if CustomUser.objects.filter(username=username).exists():
-            raise forms.ValidationError(
-                "This username is already in use"
-            )
-        return username
+    # def clean_username(self):
+    #     username = self.cleaned_data.get("username")
+    #     if CustomUser.objects.filter(username=username).exists():
+    #         raise forms.ValidationError(
+    #             "This username is already in use"
+    #         )
+    #     return username

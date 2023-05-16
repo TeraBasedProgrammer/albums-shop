@@ -25,7 +25,7 @@
                 <tr>
                     <td>"{{user.username}}"</td>
                     <td>
-                        <form action="{% url 'orders:user-unban' user.pk %}" method="post">
+                        <form action="{% url 'orders:user-unban' user.username %}" method="post">
                             {% csrf_token %}
                             <button type="submit">Unban</button>
                         </form>

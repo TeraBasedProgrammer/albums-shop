@@ -16,6 +16,11 @@ class CartView(LoginRequiredMixin, generic.ListView):
         user = self.request.user
         return CartItem.objects.filter(user=user)
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data()
+        context['unpaid_order'] = Order.objects.filter(user=self.request.user, is_paid=False)
+        return context
+
 
 def order_create_view(request):
     if request.method == 'POST':
@@ -39,7 +44,9 @@ def order_pay_view(request, pk):
         return HttpResponseForbidden()
 
     order = get_object_or_404(Order, pk=pk)
-    print(order.is_paid)
+    if request.user != order.user:
+        return HttpResponseForbidden()
+
     if order.is_paid:
         return redirect('albums:albums-list')
 
@@ -114,12 +121,12 @@ def cart_item_remove_view(request):
         return HttpResponseNotAllowed(['POST'])
 
 
-def user_ban_view(request, pk):
+def user_ban_view(request, username):
     if request.method == 'POST':
         if not request.user.is_authenticated:
             return HttpResponseForbidden()
 
-        user = get_object_or_404(CustomUser, pk=pk)
+        user = get_object_or_404(CustomUser, username=username)
         user.is_banned = True
         user.save()
         return redirect('admin-panel:unconfirmed-orders')
@@ -127,12 +134,12 @@ def user_ban_view(request, pk):
         return HttpResponseNotAllowed(['POST'])
 
 
-def user_unban_view(request, pk):
+def user_unban_view(request, username):
     if request.method == 'POST':
         if not request.user.is_authenticated:
             return HttpResponseForbidden()
 
-        user = get_object_or_404(CustomUser, pk=pk)
+        user = get_object_or_404(CustomUser, username=username)
         user.is_banned = False
         user.save()
         return redirect('admin-panel:blacklist')

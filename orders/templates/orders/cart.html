@@ -52,9 +52,21 @@
             <form action="{% url 'orders:order-create' %}" method="post">
                 {% csrf_token %}
                 <input type="hidden" name="total_price" value="{{ total_price }}">
-                <button type="submit" style="width: 150px; height: 45px">Make an order</button>
+                <button type="submit"
+                        style="width: 150px; height: 45px"
+                {% if unpaid_order %}
+                disabled=""
+                {% endif %}>
+                    Make an order</button>
+                {% if unpaid_order %}
+                    <p style="color: red">You can't make new orders until you pay for the previous one</p>
+                {% endif %}
             </form>
                 {% endwith %}
+                {% if unpaid_order %}
+                    <h2>Unpaid order: </h2>
+                    <a href="{% url 'orders:order-pay' unpaid_order.first.pk %}">Order</a>
+                {% endif %}
             </div>
     {% endif %}
 
