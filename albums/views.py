@@ -83,9 +83,11 @@ class AlbumFilterView(ArtistsGenresDataMixin, generic.ListView):
                 
             args.append(q) 
 
+        print(args)
+        print(kwargs)
         album = Album.objects.filter(
             *args,
-            **kwargs).order_by('pk' if not sort_query else sort_query)
+            **kwargs).order_by('pk' if not sort_query else sort_query).distinct()
         return album
 
 
