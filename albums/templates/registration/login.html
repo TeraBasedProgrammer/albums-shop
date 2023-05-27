@@ -3,20 +3,21 @@
 
 {% block content %}
 
-<div >
-
-    <div>
-        Don't have an account?
-        <a href="{% url 'signup' %}">Sign up</a>
-    </div>
+<div id="login">
 
     <form method="post">
         {% csrf_token %}
         {{ form.as_p}}
         <button type='submit'>
-            login
+            Login
         </button>
     </form>
+
+    <div id="login-suggest-to-sign-up">
+        Don't have an account?
+        <a href="{% url 'signup' %}">Sign up</a>
+    </div>
+
 </div>
 
 {% endblock content %}

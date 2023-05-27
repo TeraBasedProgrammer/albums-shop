@@ -102,15 +102,89 @@ header a {
 
 
 
-
 div#sidebar {
+    float: left;
+    width: 25%;
+    margin: 15px 2.5%;
     background-color: antiquewhite;
     border-radius: 15px;
     padding: 15px;
+}
+div#sidebar div.sidebar-elem {
+    margin: 50px 0;
+}
+div#sidebar form#form-search input {
+    border: 2px solid rgb(25,13,5);
+    border-radius: 5px;
+    font-family: Montserrat;
+    font-size: 20px;
+    height: 36px;
+}
+div#sidebar form#form-search button {
+    float: right;
+    font-family: Montserrat;
+    font-size: 20px;
+    height: 36px;
+    font-weight: bolder;
+    background: antiquewhite;
+    border: 2px solid rgb(25,13,5);
+    border-radius: 5px;
+}
+div#sidebar form#form-search button:hover {
+    cursor: pointer;
+    background-color: #fae9c0;
 }
 
 div.album {
     background-color: antiquewhite;
     border-radius: 15px;
     padding: 15px;
+}
+
+
+
+
+
+div#login, div#signup {
+    width: 60%;
+    margin: 115px 20%;
+    background: antiquewhite;
+    padding: 30px;
+    font-size: 1.5em;
+    border-radius: 15px;
+}
+div#login form, div#signup form {
+    padding: 30px;
+    border: 4px solid rgb(25,13,5);
+    border-radius: 10px;
+}
+div#signup form p span.helptext, div#signup form ul {
+    display: block;
+    font-size: .8em;
+    font-style: italic;
+    margin: .4em 0;
+    color: gray;
+}
+div#signup form li {
+    text-align: left;
+}
+div#login form button, div#signup form button {
+    display: block;
+    margin: auto;
+    font-family: Montserrat;
+    font-size: 24px;
+    font-weight: bolder;
+    height: 2em;
+    background: antiquewhite;
+    border: 3px solid rgb(25,13,5);
+    border-radius: 5px;
+    width: 10em;
+}
+div#login form button:hover, div#signup form button:hover {
+    cursor: pointer;
+    background-color: #fae9c0;
+}
+div#login-suggest-to-sign-up, div#signup-suggest-to-log-in {
+    margin-top: 60px;
+    text-align: center;
 }
