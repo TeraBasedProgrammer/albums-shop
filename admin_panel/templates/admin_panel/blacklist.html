@@ -1,39 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content%}
-    <style>
-        table {
-            border-collapse: collapse;
-        }
+<div id="blacklist-page">
+    <h1>Blacklist</h1>
 
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-        }
-    </style>
-    <h1 style="text-align: center;">Users blacklist</h1>
-    <div style="width: 25%; margin: 0 auto">
-        <table style="border-collapse: collapse; background-color: aqua; border: 1px solid black;">
-            <thead>
-            <tr>
-                <th>Username</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for user in users %}
-                <tr>
-                    <td>"{{user.username}}"</td>
-                    <td>
-                        <form action="{% url 'orders:user-unban' user.username %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit">Unban</button>
-                        </form>
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-
-    </div>
+    <table>
+        {% for user in users %}
+        <tr>
+            <td class="user">"{{user.username}}"</td>
+            <td class="unban">
+                <form action="{% url 'orders:user-unban' user.username %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Unban</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
 {% endblock content %}
