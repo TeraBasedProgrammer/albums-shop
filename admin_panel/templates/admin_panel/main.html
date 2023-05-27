@@ -7,8 +7,8 @@
     <img src="{% static 'images/admin.gif' %}" alt="">
     <div id="panel">
         <a href="{% url 'admin-panel:albums-data' %}"><button>Albums</button></a>
-        <a href="{% url 'admin-panel:genres-data' %}"><button>Genres</button></a>
         <a href="{% url 'admin-panel:artists-data' %}"><button>Artists</button></a>
+        <a href="{% url 'admin-panel:genres-data' %}"><button>Genres</button></a>
         <a href="{% url 'admin-panel:unconfirmed-orders' %}"><button>Unconfirmed orders</button></a>
         <a href="{% url 'admin-panel:confirmed-orders' %}"><button>Confirmed orders</button></a>
         <a href="{% url 'admin-panel:blacklist' %}"><button>Blacklist</button></a>
