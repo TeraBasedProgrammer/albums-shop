@@ -11,7 +11,7 @@
                 <h3 class="album-title">{{ album.title }}</h3>
             </a>
             <p class="album-artist">{{ album.artist.title }}</p>
-            <p class="album-price">Price: <span class="price">${{ album.price }}</span></p>
+            <p class="album-price">Price: <span class="price">{{ album.price }} UAH</span></p>
         </div>
         {% endfor %}
         {% include 'includes/pagination.html' %}

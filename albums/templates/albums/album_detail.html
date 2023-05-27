@@ -2,54 +2,57 @@
 
 {% block content %}
 
-<div class="album">
-    <h1>{{ album.title }}</h1>
-    <h2>{{ album.artist.title }}</h2>
-    <p><strong>Price:</strong> {{ album.price }} грн.</p>
-    <p><strong>Release Year:</strong> {{ album.release_date }}</p>
-    <p><strong>Genres:</strong>
-        {% for genre in album.genres.all %}
-        {{ genre.title }}
-        {% if not forloop.last %}, {% endif %}
-        {% endfor %}
-    </p>
-    <p><strong>Duration:</strong> {{ album.duration }}</p>
-    <img src="{{ album.image }}" alt="{{ album.title }} cover image">
-    <h3>Tracks:</h3>
-    <ol>
-        {% for track in album.tracks %}
-        <li>{{ track }}</li>
-        {% endfor %}
-    </ol>
-<div style="display: flex">
-{#    Check if this item is already in cart#}
-    {% if cart_item %}
-        <a href="{% url 'orders:cart' %}"><button
-                {% if not request.user.is_authenticated %}
-                disabled=""
-                {% endif %}
-                style="width: 150px; height: 40px; background-color: darkturquoise">
-            View in cart
-        </button></a>
-    {% else %}
-    <form action="{% url 'orders:cart-item-create' %}" method="post">
-        {% csrf_token %}
-        {#    Passing album primary key in POST request#}
-        <input type="hidden" name="album_pk" value="{{ album.pk }}">
+<div id="album-page">
+    <div id="album-image">
+        <img src="{{ album.image }}" alt="{{ album.title }} cover image">
 
-        <div style="display: flex">
-            <input type="number" min="1" name="quantity" max="1000" value="1">
-            <button type="submit"
+    </div>
+
+    <div id="album-info">
+        <h1>{{ album.title }} ({{ album.release_date }})</h1>
+        <h2>{{ album.artist.title }}</h2>
+        <!-- <p><strong>Release Year:</strong> {{ album.release_date }}</p> -->
+        <p class="genres">
+            <!-- <strong>Genres:</strong> -->
+            {% for genre in album.genres.all %}
+            <span class="genre">{{ genre.title }}</span>
+            <!-- {% if not forloop.last %}, {% endif %} -->
+            {% endfor %}
+        </p>
+        <p class="duration"><strong>Duration:</strong> {{ album.duration }}</p>
+        <p class="tracks"><strong>Tracks:</strong></h3>
+        <ol>
+            {% for track in album.tracks %}
+            <li>{{ track }}</li>
+            {% endfor %}
+        </ol>
+        <p class="price"><strong>Price:</strong> {{ album.price }}.00 UAH</p>
+
+        <div id="album-cart">
+            {# Check if this item is already in cart#}
+            {% if cart_item %}
+            <a href="{% url 'orders:cart' %}">
+                <button {% if not request.user.is_authenticated %} disabled="" {% endif %}>
+                    View in cart
+                </button>
+            </a>
+            {% else %}
+            <form action="{% url 'orders:cart-item-create' %}" method="post">
+                {% csrf_token %}
+                {# Passing album primary key in POST request#}
+                <input type="hidden" name="album_pk" value="{{ album.pk }}">
+
+                <div>
+                    <input type="number" min="1" name="quantity" max="1000" value="1">
+                    <button type="submit" {% if not request.user.is_authenticated %} disabled="" {% endif %}>Add to cart</button>
                     {% if not request.user.is_authenticated %}
-                    disabled=""
-                    {% endif %}  style="width: 150px; height: 40px; background-color: darkturquoise">Add to cart</button>
-            {% if not request.user.is_authenticated %}
-                <p style="color: red; font-size: 18px; margin-left:10px">You have to log in to buy this album</p>
+                    <p>You have to log in to buy this album</p>
+                    {% endif %}
+                </div>
+            </form>
             {% endif %}
         </div>
-    </form>
-    {% endif %}
-</div>
+    </div>
 </div>
 
 {% endblock content %}
