@@ -552,3 +552,91 @@ div#banned-page img {
     margin: auto;
     height: 300px;
 }
+
+div#confirmed-orders-page {
+    width: 95%;
+    margin: 115px 2.5%;
+    background: antiquewhite;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px #000;
+    padding: 15px;
+}
+div#confirmed-orders-page h1 {
+    text-align: center;
+}
+div#confirmed-orders-page table {
+    font-size: 1.2em;
+    width: 95%;
+    margin: 0 2.5%;
+    border: 3px solid rgb(25,13,5);
+    border-radius: 10px;
+    padding: 5px;
+}
+div#confirmed-orders-page table tr {
+    padding: 15px;
+}
+div#confirmed-orders-page table td {
+    vertical-align: top;
+    padding: 10px;
+}
+div#confirmed-orders-page table td.username {
+    width: 10%;
+}
+div#confirmed-orders-page table td.total-price {
+    text-align: right;
+    width: 15%;
+}
+div#confirmed-orders-page table td.albums {
+    width: 55%;
+}
+div#confirmed-orders-page table td.datetime {
+    width: 20%;
+}
+
+div#unconfirmed-orders-page {
+    width: 95%;
+    margin: 115px 2.5%;
+    background: antiquewhite;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px #000;
+    padding: 15px;
+}
+div#unconfirmed-orders-page h1 {
+    text-align: center;
+}
+div#unconfirmed-orders-page table {
+    font-size: 1.2em;
+    width: 95%;
+    margin: 0 2.5%;
+    border: 3px solid rgb(25,13,5);
+    border-radius: 10px;
+    padding: 5px;
+}
+div#unconfirmed-orders-page table tr {
+    padding: 15px;
+}
+div#unconfirmed-orders-page table td {
+    vertical-align: top;
+    padding: 10px;
+}
+div#unconfirmed-orders-page table td.confirm, div#unconfirmed-orders-page table td.discard, div#unconfirmed-orders-page table td.ban {
+    width: 10%;
+}
+div#unconfirmed-orders-page table td.confirm button, div#unconfirmed-orders-page table td.discard button, div#unconfirmed-orders-page table td.ban button {
+    display: block;
+    margin: auto;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-weight: bolder;
+    height: 2em;
+    width: 10em;
+    background: antiquewhite;
+    border: 3px solid rgb(25,13,5);
+    border-radius: 5px;
+}
+div#unconfirmed-orders-page table td.confirm button:enabled:hover, div#unconfirmed-orders-page table td.discard button:enabled:hover, div#unconfirmed-orders-page table td.ban button:enabled:hover {
+    cursor: pointer;
+    background-color: #fae9c0;
+}

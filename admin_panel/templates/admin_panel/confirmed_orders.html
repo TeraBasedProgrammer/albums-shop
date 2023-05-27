@@ -1,47 +1,32 @@
 {% extends 'base.html' %}
 
 {% block content%}
-    <style>
-        table {
-            border-collapse: collapse;
-        }
+<div id="confirmed-orders-page">
+    <h1>Confirmed orders</h1>
+    <table>
+        <tr>
+            <th>User</th>
+            <th>Total price</th>
+            <th>Ordered albums</th>
+            <th>Time</th>
+        </tr>
+        {% for order in orders %}
+        <tr>
+            <td class="username">{{ order.user.username }}</td>
+            <td class="total-price">{{ order.total_price }}.00 UAH</td>
+            <td class="albums">
+                {% for album in order.albums.all %}
+                {{ album.title }}<br>
+                {% endfor %}
+            </td>
+            <td class="datetime">{{ order.created_at }} </td>
+        </tr>
+        {% endfor %}
+    </table>
 
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-        }
-    </style>
-    <h1 style="text-align: center;">Confirmed orders data</h1>
-    <div style="width: 75%; margin: 0 auto">
-        <table style="border-collapse: collapse; background-color: aqua; border: 1px solid black;">
-            <thead>
-            <tr>
-                <th>User</th>
-                <th>Total price</th>
-                <th>Paid</th>
-                <th>Albums</th>
-                <th>Time</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for order in orders %}
-                <tr>
-                    <td>{{ order.user.username }}</td>
-                    <td>{{ order.total_price }} грн.</td>
-                    <td>{{order.is_paid}}</td>
-                    <td>
-                        {% for album in order.albums.all %}
-                            {{ album.title }},
-                        {% endfor %}
-                    </td>
-                    <td>{{ order.created_at }} </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-
-    </div>
-    <div style=" width: max-content; margin: 30px auto;">
+    <div id="pagination">
         {% include 'includes/pagination.html' %}
     </div>
+
+</div>
 {% endblock content %}

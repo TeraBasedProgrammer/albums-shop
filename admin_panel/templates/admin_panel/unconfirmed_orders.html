@@ -1,44 +1,32 @@
 {% extends 'base.html' %}
 
 {% block content%}
-    <style>
-        table {
-            border-collapse: collapse;
-        }
-
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-        }
-    </style>
-    <h1 style="text-align: center;">Unconfirmed orders data</h1>
-    <div style="width: 75%; margin: 0 auto">
-        <table style="border-collapse: collapse; background-color: aqua; border: 1px solid black;">
-            <thead>
-            <tr>
-                <th>User</th>
-                <th>Total price</th>
-                <th>Paid</th>
-                <th>Albums</th>
-                <th>Time</th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for order in orders %}
+<div id="unconfirmed-orders-page">
+        <h1>Unconfirmed orders data</h1>
+        <div>
+            <table>
+                <tr>
+                    <th>User</th>
+                    <th>Total price</th>
+                    <th>Paid</th>
+                    <th>Ordered albums</th>
+                    <th>Time</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                {% for order in orders %}
                 <tr>
                     <td>{{ order.user.username }}</td>
                     <td>{{ order.total_price }} грн.</td>
                     <td>{{order.is_paid}}</td>
                     <td>
                         {% for album in order.albums.all %}
-                            {{ album.title }},
+                            {{ album.title }}<br>
                             {% endfor %}
                     </td>
                     <td>{{ order.created_at }} </td>
-                    <td>
+                    <td class="confirm">
                         <form action="{% url 'orders:order-confirm' order.pk %}" method="post">
                         {% csrf_token %}
                         <button {% if not order.is_paid or order.user.is_banned %}
@@ -47,7 +35,7 @@
                         >Confirm order</button>
                         </form>
                     </td>
-                    <td>
+                    <td class="discard">
                         <form action="{% url 'orders:order-discard' order.pk %}" method="post">
                             {% csrf_token %}
                             <button {% if order.is_paid  %}
@@ -57,7 +45,7 @@
                             </button>
                         </form>
                     </td>
-                    <td>
+                    <td class="ban">
                         <form action="{% url 'orders:user-ban' order.user.username %}" method="post">
                         {% csrf_token %}
                         <button {% if order.user == request.user or order.user.is_banned or order.is_paid%}
@@ -68,12 +56,13 @@
                         </form>
                     </td>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-
-    </div>
-    <div style=" width: max-content; margin: 30px auto;">
-        {% include 'includes/pagination.html' %}
-    </div>
+            {% endfor %}        
+            </table>
+        </div>
+        
+        <div>
+            {% include 'includes/pagination.html' %}
+        </div>
+    
+</div>
 {% endblock content %}
