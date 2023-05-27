@@ -1,20 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div style="display: flex; justify-content: left;">
+<div>
     {% include 'includes/sidebar.html' %}
-    <div style="display: flex; flex-wrap: wrap; width: 70%; flex-direction: row; justify-content: space-around;">
-    {% for album in albums %}
-        <div style="width: max-content; padding: 10px; height: max-content;">
-            <div class="album">
-                <a href="{% url 'albums:album-detail' album.pk %}"><img src="{{ album.image }}" alt="{{ album.title }}"></a>
-                <a href="{% url 'albums:album-detail' album.pk %}"><h3>{{ album.title }}</h3></a>
-                <p>{{ album.artist.title }}</p>
-                <p>Price: {{ album.price }}</p>
-            </div>
+    <div id="albums-list">
+        {% for album in albums %}
+        <div class="album">
+            <a href="{% url 'albums:album-detail' album.pk %}">
+                <img src="{{ album.image }}" alt="{{ album.title }}" class="album-image">
+                <h3 class="album-title">{{ album.title }}</h3>
+            </a>
+            <p class="album-artist">{{ album.artist.title }}</p>
+            <p class="album-price">Price: <span class="price">${{ album.price }}</span></p>
         </div>
-    {% endfor %}
-    {% include 'includes/pagination.html' %}
+        {% endfor %}
+        {% include 'includes/pagination.html' %}
     </div>
 </div>
 

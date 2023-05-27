@@ -107,7 +107,8 @@ div#sidebar {
     width: 20%;
     margin: 15px 2.5%;
     background-color: antiquewhite;
-    border-radius: 15px;
+    box-sizing: border-box;
+    border-radius: 10px;
     padding: 15px;
 }
 div#sidebar hr {
@@ -121,14 +122,14 @@ div#sidebar form#form-search input {
     font-family: Montserrat;
     font-size: 20px;
     height: 36px;
-    width: 65%;
+    width: 60%;
 }
 div#sidebar form#form-search button {
     float: right;
     font-family: Montserrat;
     font-size: 20px;
     height: 36px;
-    width: 30%;
+    width: 35%;
     font-weight: bolder;
     background: antiquewhite;
     border: 2px solid rgb(25,13,5);
@@ -162,10 +163,63 @@ div#sidebar div.sidebar-elem#filter ul {
     list-style: none;
 }
 
+
+
+div#albums-list {
+    box-sizing: border-box;
+    width: 70%;
+    margin: 0 2.5%;
+    float: left;
+}
+
+div#albums-list div.album {
+    background-color: antiquewhite;
+    box-sizing: border-box;
+    width: 48%;
+    height: 100%;
+    float: left;
+    margin: 15px 1%;
+    border-radius: 10px;
+    padding: 15px;
+}
+div#albums-list div.album img {
+    width: 100%;
+    height: 80%;
+}
+div#albums-list div.album a {
+    color: #000;
+}
+div#albums-list div.album h3 {
+    font-size: 1.5em;
+    margin: .5em 0;
+}
+div#albums-list div.album p.album-artist {
+    font-size: 1.25em;
+    font-style: italic;
+    margin: 0;
+}
+div#albums-list div.album p.album-price {
+    text-align: right;
+    margin: 0;
+    font-size: 1.25em;
+}
+div#albums-list div.album p.album-price span.price {
+    font-weight: 600;
+}
+
+
+
+div.album-pagination {
+    clear: both;
+    text-align: center;
+}
 div.album-pagination nav.album-pagination-list {
+    box-sizing: border-box;
+    width: 98%;
+    margin: 0 1%;
     padding: 15px;
     background: antiquewhite;
-    border-radius: 15px;
+    border-radius: 10px;
     font-size: 20px;
 }
 div.album-pagination nav.album-pagination-list a {
@@ -179,17 +233,6 @@ div.album-pagination nav.album-pagination-list a.active {
 div.album-pagination nav.album-pagination-list a:hover {
     text-shadow: 0px 0px 5px #000;
 }
-
-
-
-
-div.album {
-    background-color: antiquewhite;
-    border-radius: 15px;
-    padding: 15px;
-}
-
-
 
 
 

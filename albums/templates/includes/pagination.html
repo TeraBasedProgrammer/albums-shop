@@ -1,29 +1,29 @@
 {% load static %}
 {% load spurl %}
 {% if page_obj.has_other_pages %}
-      <div class="album-pagination">
-        <nav class="album-pagination-list">
-          {% if page_obj.number|add:-1 > 0 %}
-          <a href="{% spurl query=request.GET set_query='page={{ page_obj.number|add:-1 }}' %}" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-          {% endif %}
-          {% for p in paginator.page_range %}
-            {% if page_obj.number == p %}
-              <a class="active">{{ p }}</a>
-            {% else %}
-              {% if 'sort_by' in request.get_full_path %}
-                <a href="{% spurl query=request.GET set_query='page={{ p }}' %}">{{ p }}</a>
-              {% else %}
-                <a href="{% spurl query=request.GET set_query='page={{ p }}' %}">{{ p }}</a>
-              {% endif %}
-            {% endif %}
-            {% endfor %}
-            {% if page_obj.number|add:1 <= paginator.num_pages %}  
-            <a href="{% spurl query=request.GET set_query='page={{ page_obj.number|add:1 }}' %}" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            {% endif %}
-            </a>  
-          </nav>
-        </div> 
-        {% endif %}
+<div class="album-pagination">
+  <nav class="album-pagination-list">
+    {% if page_obj.number|add:-1 > 0 %}
+    <a href="{% spurl query=request.GET set_query='page={{ page_obj.number|add:-1 }}' %}" aria-label="Previous">
+      <span aria-hidden="true">&laquo;</span>
+    </a>
+    {% endif %}
+    {% for p in paginator.page_range %}
+    {% if page_obj.number == p %}
+    <a class="active">{{ p }}</a>
+    {% else %}
+    {% if 'sort_by' in request.get_full_path %}
+    <a href="{% spurl query=request.GET set_query='page={{ p }}' %}">{{ p }}</a>
+    {% else %}
+    <a href="{% spurl query=request.GET set_query='page={{ p }}' %}">{{ p }}</a>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+    {% if page_obj.number|add:1 <= paginator.num_pages %} <a
+      href="{% spurl query=request.GET set_query='page={{ page_obj.number|add:1 }}' %}" aria-label="Next">
+      <span aria-hidden="true">&raquo;</span>
+      {% endif %}
+      </a>
+  </nav>
+</div>
+{% endif %}
