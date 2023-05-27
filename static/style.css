@@ -228,7 +228,6 @@ div.album-pagination nav.album-pagination-list {
     margin: 0 1%;
     padding: 15px;
     background: antiquewhite;
-    box-shadow: 5px 5px 10px #000;
     border-radius: 10px;
     font-size: 20px;
 }
@@ -730,6 +729,216 @@ div#blacklist-page table td.unban button {
     border-radius: 5px;
 }
 div#blacklist-page table td.unban button:hover {
+    cursor: pointer;
+    background-color: #fae9c0;
+}
+
+
+div#albums-page {
+    width: 95%;
+    margin: 115px 2.5%;
+    background: antiquewhite;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px #000;
+    padding: 15px;
+}
+div#albums-page h1 {
+    text-align: center;
+}
+div#albums-page form {
+    width: 50%;
+    margin: auto;
+}
+div#albums-page form input {
+    border: 2px solid rgb(25,13,5);
+    border-radius: 5px;
+    font-family: Montserrat;
+    font-size: 20px;
+    height: 36px;
+    width: 60%;
+}
+div#albums-page form button {
+    float: right;
+    font-family: Montserrat;
+    font-size: 20px;
+    height: 36px;
+    width: 35%;
+    font-weight: bolder;
+    background: antiquewhite;
+    border: 2px solid rgb(25,13,5);
+    border-radius: 5px;
+}
+div#albums-page form button:hover {
+    cursor: pointer;
+    background-color: #fae9c0;
+}
+
+div#albums-page>a {
+    text-decoration: none;
+}
+div#albums-page a button#create-album {
+    display: block;
+    font-family: Montserrat;
+    font-size: 24px;
+    height: 48px;
+    width: 30%;
+    margin: 30px auto;
+    font-weight: bolder;
+    background: antiquewhite;
+    border: 2px solid rgb(25,13,5);
+    border-radius: 5px;
+}
+div#albums-page a button#create-album:hover {
+    cursor: pointer;
+    background-color: #fae9c0;
+}
+div#albums-page table {
+    border: 3px solid rgb(25,13,5);
+    border-radius: 10px;
+    padding: 15px;
+}
+div#albums-page table td, th {
+    text-align: left;
+    padding: 5px;
+    vertical-align: top;
+}
+div#albums-page table td.title {
+    width: 15%;
+}
+div#albums-page table td.title a {
+    color: #000;
+}
+div#albums-page table td.artist {
+    width: 10%;
+}
+div#albums-page table td.image img {
+    height: 100px;
+}
+div#albums-page table td.release-date {
+    width: 5%;
+}
+div#albums-page table td.duration {
+    width: 5%;
+}
+div#albums-page table td.tracks {
+    width: 15%;
+}
+div#albums-page table td.genres {
+    width: 15%;
+}
+div#albums-page table td.price {
+    width: 10%;
+}
+div#albums-page table td.update-btn, div#albums-page table td.delete-btn {
+    width: 10%;
+}
+div#albums-page table td.update-btn a, div#albums-page table td.delete-btn a {
+    display: block;
+    width: 100%;
+    color: #000;
+    text-decoration: none;
+}
+div#albums-page table td.update-btn a button, div#albums-page table td.delete-btn a button {
+    display: block;
+    width: 100%;
+    font-family: Montserrat;
+    font-size: 16px;
+    height: 32px;
+    font-weight: bolder;
+    background: antiquewhite;
+    border: 2px solid rgb(25,13,5);
+    border-radius: 5px;
+}
+div#albums-page table td.update-btn a button:hover, div#albums-page table td.delete-btn a button:hover {
+    cursor: pointer;
+    background-color: #fae9c0;
+}
+
+div#album-create-page {
+    width: 95%;
+    margin: 115px 2.5%;
+    background: antiquewhite;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px #000;
+    padding: 15px;
+}
+div#album-create-page h1 {
+    text-align: center;
+}
+div#album-create-page button {
+    display: block;
+    margin: 30px auto;
+    width: 30%;
+    font-family: Montserrat;
+    font-size: 24px;
+    height: 48px;
+    font-weight: bolder;
+    background: antiquewhite;
+    border: 2px solid rgb(25,13,5);
+    border-radius: 5px;
+}
+div#album-create-page button:hover {
+    cursor: pointer;
+    background-color: #fae9c0;
+}
+
+div#album-delete-page {
+    width: 95%;
+    margin: 115px 2.5%;
+    background: antiquewhite;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px #000;
+    padding: 15px;
+}
+div#album-delete-page h1 {
+    text-align: center;
+}
+div#album-delete-page button {
+    display: block;
+    margin: 30px auto;
+    width: 30%;
+    font-family: Montserrat;
+    font-size: 24px;
+    height: 48px;
+    font-weight: bolder;
+    background: antiquewhite;
+    border: 2px solid rgb(25,13,5);
+    border-radius: 5px;
+}
+div#album-delete-page button:hover {
+    cursor: pointer;
+    background-color: #fae9c0;
+}
+
+
+div#album-update-page {
+    width: 95%;
+    margin: 115px 2.5%;
+    background: antiquewhite;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px #000;
+    padding: 15px;
+}
+div#album-update-page h1 {
+    text-align: center;
+}
+div#album-update-page button {
+    display: block;
+    margin: 30px auto;
+    width: 30%;
+    font-family: Montserrat;
+    font-size: 24px;
+    height: 48px;
+    font-weight: bolder;
+    background: antiquewhite;
+    border: 2px solid rgb(25,13,5);
+    border-radius: 5px;
+}
+div#album-update-page button:hover {
     cursor: pointer;
     background-color: #fae9c0;
 }

@@ -2,14 +2,14 @@
 {% load tailwind_filters %}
 
 {% block content %}
-<div class="max-w-lg mx-auto">
-    <div class="py-5 border-t border-gray-200">
-        <h1 class="text-4xl text-gray-800">Add new {{model_name}}</h1>
+<div id="album-create-page">
+    <div>
+        <h1>Add new {{model_name}}</h1>
     </div>
-    <form method="post" class="mt-5">
+    <form method="post">
         {% csrf_token %}
         {{form.as_p}}
-        <button type='submit' class="w-full text-white bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md">
+        <button type='submit'>
             Submit
         </button>
     </form>
