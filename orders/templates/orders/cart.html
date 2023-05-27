@@ -2,72 +2,50 @@
 {% load custom_filters %}
 
 {% block content %}
-    <h1 style="text-align: center">Cart</h1>
+<div id="cart-page">
+    <h1>Your сart</h1>
     {% if not cart_items %}
-        <h1>Your cart is empty</h1>
-        {% else %}
-            <style>
-                table {
-                    border-collapse: collapse;
-                }
-
-                th, td {
-                    border: 1px solid black;
-                    padding: 8px;
-                }
-            </style>
-            <div style="width: 75%; margin: 0 auto">
-                <table style="border-collapse: collapse; background-color: aqua; border: 1px solid black;">
-                    <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Image</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for item in cart_items %}
-                        <tr>
-                            <td><a href="{% url 'albums:album-detail' item.album.pk %}">"{{ item.album.title }}"</a></td>
-                            <td><img src="{{ item.album.image }}" style="width: 150px; height: 150px;"></td>
-                            <td>{{ item.album.price }} грн.</td>
-                            <td>{{ item.quantity }}</td>
-                            <td>
-                                <form action="{% url 'orders:cart-item-remove' %}" method="post">
-                                    <input type="hidden" name="item_pk" value="{{ item.pk }}">
-                                    {% csrf_token %}
-                                    <button>Remove from cart</button>
-                                </form>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            <h1>Total price:
-                {% with total_price=cart_items|calculate_total %}
-                    {{ total_price }} грн.
-            </h1>
-            <form action="{% url 'orders:order-create' %}" method="post">
-                {% csrf_token %}
-                <input type="hidden" name="total_price" value="{{ total_price }}">
-                <button type="submit"
-                        style="width: 150px; height: 45px"
-                {% if unpaid_order %}
-                disabled=""
-                {% endif %}>
-                    Make an order</button>
-                {% if unpaid_order %}
-                    <p style="color: red">You can't make new orders until you pay for the previous one</p>
-                {% endif %}
-            </form>
-                {% endwith %}
-                {% if unpaid_order %}
-                    <h2>Unpaid order: </h2>
-                    <a href="{% url 'orders:order-pay' unpaid_order.first.pk %}">Order</a>
-                {% endif %}
-            </div>
+    <h2>Your cart is empty</h2>
+    {% else %}
+    <table>
+        <tbody>
+            {% for item in cart_items %}
+            <tr>
+                <td class="image"><img src="{{ item.album.image }}"></td>
+                <td class="album"><a href="{% url 'albums:album-detail' item.album.pk %}">{{ item.album.title }}</a></td>
+                <td class="artist">{{ item.album.artist }}</td>
+                <td class="price">{{ item.album.price }}.00 UAH</td>
+                <td class="quantity">{{ item.quantity }}</td>
+                <td class="remove">
+                    <form action="{% url 'orders:cart-item-remove' %}" method="post">
+                        <input type="hidden" name="item_pk" value="{{ item.pk }}">
+                        {% csrf_token %}
+                        <button>Remove from cart</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h2>Total price:
+        {% with total_price=cart_items|calculate_total %}
+        <b>{{ total_price }}.00 UAH</b>
+    </h2>
+    <form action="{% url 'orders:order-create' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="total_price" value="{{ total_price }}">
+        <button id="order" type="submit" {% if unpaid_order %} disabled="" {% endif %}>
+            Make an order</button>
+        {% if unpaid_order %}
+        <p style="color: red">You can't make new orders until you pay for the previous one</p>
+        {% endif %}
+    </form>
+    {% endwith %}
+    {% if unpaid_order %}
+    <h2>Unpaid order: </h2>
+    <a href="{% url 'orders:order-pay' unpaid_order.first.pk %}">Order</a>
+    {% endif %}
     {% endif %}
 
+</div>
 {% endblock content %}
