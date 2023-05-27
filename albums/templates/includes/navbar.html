@@ -1,28 +1,49 @@
 {% load static %}
 <header>
-    <div style="display: flex; justify-content: left;">
-        <a href="{% url 'albums:albums-list' %}"><h2>Albums shop</h2></a>
-      <nav style="display: flex; justify-content: center;  margin-left: 150px;">
-        {% if not request.user.is_authenticated %}
-          <a  href="{% url 'signup' %}" style="margin-right: 100px;">Signup</a>
-        {% else %}
-          <a style="margin-right: 100px;" href="{% url 'albums:albums-list' %}" class="">Albums</a>
-      </nav>
-        {% endif %}
-      {% if request.user.is_staff %}
-         <a style="margin-right: 100px;" href="{% url 'admin-panel:main-page' %}">Admin panel</a>
-      {% endif %}
-      
-      {% if request.user.is_authenticated %}
-        <p style=" margin-right: 100px;">Logged in as: {{ request.user.username }}</p>
-          <a href="{% url 'orders:cart' %}" style=" margin-right: 100px;">Cart</a>
-        <a href="{% url 'logout' %}" >
-          Logout
-        </a>
-      {% else %}
-      <a href="{% url 'login' %}" style=" margin-right: 100px;">
-          Login
-      </a>
-    {% endif %}
+  <a href="{% url 'albums:albums-list' %}">
+    <div id="logo">
+      Vinyl Store
     </div>
+  </a>
+
+  {% if not request.user.is_authenticated %}
+  <div id="signup">
+    <a href="{% url 'signup' %}">Signup</a>
+  </div>
+  {% endif %}
+
+  {% if not request.user.is_authenticated %}
+  <div id="login">
+    <a href="{% url 'login' %}">
+      Login
+    </a>
+  </div>
+  {% endif %}
+
+  {% if request.user.is_authenticated %}
+  <div id="logged">
+    <p>Logged in as: {{ request.user.username }}</p>
+    <a href="{% url 'logout' %}" style="text-decoration: underline;">
+      Logout
+    </a>
+  </div>
+  {% endif %}
+
+  {% if request.user.is_authenticated %}
+  <a href="{% url 'orders:cart' %}">
+    <div id="cart">
+      <img src="../../../static/images/cart.png" alt="cart.png">
+      Cart
+    </div>
+  </a>
+  {% endif %}
+
+  {% if request.user.is_staff %}
+  <a href="{% url 'admin-panel:main-page' %}">
+    <div id="admin-panel">
+      Admin panel
+    </div>
+  </a>
+  {% endif %}
+  
 </header>
