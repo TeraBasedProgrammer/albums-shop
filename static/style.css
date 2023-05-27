@@ -37,7 +37,7 @@ header div {
     height: 100px;
     text-align: center;
 }
-header div#logo {
+header div#header-logo {
     float: left;
     box-sizing: border-box;
     width: 20%;
@@ -47,10 +47,13 @@ header div#logo {
     line-height: 2;
     font-weight: bolder;
 }
-header div#logo a {
+header div#header-logo a {
     text-decoration: none;
 }
-header div#signup, header div#login {
+header div#header-logo:hover {
+    background: rgba(250, 235, 215, .2);
+}
+header div#header-signup, header div#header-login {
     float: right;
     width: 10%;
     height: 100px;
@@ -58,31 +61,40 @@ header div#signup, header div#login {
     line-height: 4em;
     text-align: center;
 }
-header div#logged {
+header div#header-signup:hover, header div#header-login:hover {
+    background: rgba(250, 235, 215, .2);
+}
+header div#header-logged {
     float: right;
     font-size: 1.2em;
     width: 15%;
     text-align: center;
 }
-header div#cart {
+header div#header-cart {
     text-align: left;
     width: 15%;
     float: right;
     font-size: 2.5em;
     line-height: 2.5em;
 }
-header div#cart img {
+header div#header-cart:hover {
+    background: rgba(250, 235, 215, .2);
+}
+header div#header-cart img {
     height: 80px;
     display: block;
     margin-top: 10px;
     float: left;
 }
-header div#admin-panel {
+header div#header-admin-panel {
     float: right;
     text-align: center;
     width: 15%;
     font-size: 1.5em;
     line-height: 4;
+}
+header div#header-admin-panel:hover {
+    background: rgba(250, 235, 215, .2);
 }
 header a {
     color: antiquewhite;
