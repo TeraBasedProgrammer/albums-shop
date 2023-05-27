@@ -1,0 +1,44 @@
+@font-face {
+    font-family: Playfair Display;
+    src: url("fonts/PlayfairDisplay/PlayfairDisplay-VariableFont_wght.ttf");
+}
+@font-face {
+    font-family: Montserrat;
+    src: url("fonts/Montserrat/Montserrat-VariableFont_wght.ttf");
+}
+
+body {
+    background: url("https://pbs.twimg.com/media/EXvhjKAX0AEunUs?format=jpg&name=4096x4096") no-repeat fixed;
+    background-size: cover;
+    margin-top: 100px;
+    font-family: Montserrat, sans-serif;
+}
+
+header {
+    width: 100%;
+    height: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to bottom, rgba(25,13,5,1), rgba(25,13,5,.3));
+    
+    font-family: Playfair Display, serif;
+    color: antiquewhite;
+
+    /*border: 1px solid red;*/
+}
+header a {
+    color: antiquewhite;
+}
+
+div#sidebar {
+    background-color: antiquewhite;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+div.album {
+    background-color: antiquewhite;
+    border-radius: 15px;
+    padding: 15px;
+}
