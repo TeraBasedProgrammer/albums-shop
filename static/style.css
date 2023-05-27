@@ -1,3 +1,5 @@
+/* FONT-FACES */
+
 @font-face {
     font-family: Playfair Display;
     src: url("fonts/PlayfairDisplay/PlayfairDisplay-VariableFont_wght.ttf");
@@ -6,14 +8,9 @@
     font-family: Montserrat;
     src: url("fonts/Montserrat/Montserrat-VariableFont_wght.ttf");
 }
-@font-face {
-    font-family: Philosopher, serif;
-    src: url("fonts/Philosopher/Philosopher-Regular.ttf");
-}
-@font-face {
-    font-family: Caveat, cursive;
-    src: url("fonts/Caveat/Caveat-VariableFont_wght.ttf");
-}
+
+
+/* BODY */
 
 body {
     background: url("images/bg.jpg") no-repeat fixed;
@@ -21,6 +18,9 @@ body {
     margin-top: 100px;
     font-family: Montserrat, sans-serif;
 }
+
+
+/* HEADER */
 
 header {
     width: 100%;
@@ -101,6 +101,7 @@ header a {
 }
 
 
+/* MAIN PAGE SIDEBAR */
 
 div#sidebar {
     float: left;
@@ -165,6 +166,7 @@ div#sidebar div.sidebar-elem#filter ul {
 }
 
 
+/* MAIN PAGE ALBUM LIST */
 
 div#albums-list {
     box-sizing: border-box;
@@ -172,7 +174,6 @@ div#albums-list {
     margin: 0 2.5%;
     float: left;
 }
-
 div#albums-list div.album {
     background-color: antiquewhite;
     box-shadow: 5px 5px 10px #000;
@@ -217,6 +218,7 @@ div#albums-list div.album p.album-price span.price {
 }
 
 
+/* PAGINATION */
 
 div.album-pagination {
     clear: both;
@@ -243,6 +245,8 @@ div.album-pagination nav.album-pagination-list a:hover {
     text-shadow: 0px 0px 5px #000;
 }
 
+
+/* ALBUM PAGE */
 
 div#album-page {
     width: 100%;
@@ -322,6 +326,8 @@ div#album-page div#album-cart button:hover {
 }
 
 
+/* LOGIN/SIGNUP */
+
 div#login, div#signup {
     width: 60%;
     margin: 115px 20%;
@@ -366,6 +372,8 @@ div#login-suggest-to-sign-up, div#signup-suggest-to-log-in {
     text-align: center;
 }
 
+
+/* CART */
 
 div#cart-page {
     width: 95%;
@@ -462,6 +470,8 @@ div#cart-page button#order:hover {
 }
 
 
+/* ORDER PAY */
+
 div#order-pay-page {
     width: 95%;
     margin: 115px 2.5%;
@@ -490,6 +500,9 @@ div#order-pay-page button:hover {
     cursor: pointer;
     background-color: #fae9c0;
 }
+
+
+/* ORDER SUCCESS PAY */
 
 div#order-success-pay-page {
     width: 95%;
@@ -534,6 +547,9 @@ div#order-success-pay-page button:hover {
     background-color: #fae9c0;
 }
 
+
+/* BANNED */
+
 div#banned-page {
     width: 95%;
     margin: 115px 2.5%;
@@ -553,6 +569,7 @@ div#banned-page img {
 }
 
 
+/* ADMIN PANEL */
 
 div#admin-panel-main-page {
     width: 95%;
@@ -596,6 +613,9 @@ div#admin-panel-main-page a button:hover {
     background-color: #fae9c0;
 }
 
+
+/* CONFIRMED ORDERS */
+
 div#confirmed-orders-page {
     width: 95%;
     margin: 115px 2.5%;
@@ -636,6 +656,9 @@ div#confirmed-orders-page table td.albums {
 div#confirmed-orders-page table td.datetime {
     width: 20%;
 }
+
+
+/* UNCONFIRMED ORDERS */
 
 div#unconfirmed-orders-page {
     width: 95%;
@@ -685,6 +708,7 @@ div#unconfirmed-orders-page table td.confirm button:enabled:hover, div#unconfirm
 }
 
 
+/* BLACKLIST */
 
 div#blacklist-page {
     width: 95%;
@@ -734,6 +758,8 @@ div#blacklist-page table td.unban button:hover {
 }
 
 
+/* ALBUMS */
+
 div#albums-page {
     width: 95%;
     margin: 115px 2.5%;
@@ -773,7 +799,6 @@ div#albums-page form button:hover {
     cursor: pointer;
     background-color: #fae9c0;
 }
-
 div#albums-page>a {
     text-decoration: none;
 }
@@ -855,6 +880,9 @@ div#albums-page table td.update-btn a button:hover, div#albums-page table td.del
     background-color: #fae9c0;
 }
 
+
+/* CREATE ALBUM */
+
 div#album-create-page {
     width: 95%;
     margin: 115px 2.5%;
@@ -883,6 +911,9 @@ div#album-create-page button:hover {
     cursor: pointer;
     background-color: #fae9c0;
 }
+
+
+/* DELETE ALBUM */
 
 div#album-delete-page {
     width: 95%;
@@ -914,6 +945,8 @@ div#album-delete-page button:hover {
 }
 
 
+/* UPDATE ALBUM */
+
 div#album-update-page {
     width: 95%;
     margin: 115px 2.5%;
@@ -944,7 +977,7 @@ div#album-update-page button:hover {
 }
 
 
-
+/* ARTISTS */
 
 div#artists-page {
     width: 95%;
@@ -1017,6 +1050,8 @@ div#artists-page table td.update-btn a button:hover, div#artists-page table td.d
     background-color: #fae9c0;
 }
 
+
+/* GENRES */
 
 div#genres-page {
     width: 95%;
