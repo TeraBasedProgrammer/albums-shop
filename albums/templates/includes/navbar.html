@@ -1,19 +1,19 @@
 {% load static %}
 <header>
   <a href="{% url 'albums:albums-list' %}">
-    <div id="logo">
+    <div id="header-logo">
       Vinyl Store
     </div>
   </a>
 
   {% if not request.user.is_authenticated %}
-  <div id="signup">
+  <div id="header-signup">
     <a href="{% url 'signup' %}">Signup</a>
   </div>
   {% endif %}
 
   {% if not request.user.is_authenticated %}
-  <div id="login">
+  <div id="header-login">
     <a href="{% url 'login' %}">
       Login
     </a>
@@ -21,7 +21,7 @@
   {% endif %}
 
   {% if request.user.is_authenticated %}
-  <div id="logged">
+  <div id="header-logged">
     <p>Logged in as: {{ request.user.username }}</p>
     <a href="{% url 'logout' %}" style="text-decoration: underline;">
       Logout
@@ -31,7 +31,7 @@
 
   {% if request.user.is_authenticated %}
   <a href="{% url 'orders:cart' %}">
-    <div id="cart">
+    <div id="header-cart">
       <img src="../../../static/images/cart.png" alt="cart.png">
       Cart
     </div>
@@ -40,10 +40,10 @@
 
   {% if request.user.is_staff %}
   <a href="{% url 'admin-panel:main-page' %}">
-    <div id="admin-panel">
+    <div id="header-admin-panel">
       Admin panel
     </div>
   </a>
   {% endif %}
-  
+
 </header>
