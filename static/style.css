@@ -461,3 +461,94 @@ div#cart-page button#order:hover {
     cursor: pointer;
     background-color: #fae9c0;
 }
+
+
+div#order-pay-page {
+    width: 95%;
+    margin: 115px 2.5%;
+    background: antiquewhite;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px #000;
+    padding: 15px;
+}
+div#order-pay-page h1 {
+    text-align: center;
+}
+div#order-pay-page button {
+    display: block;
+    margin: auto;
+    font-family: Montserrat;
+    font-size: 24px;
+    font-weight: bolder;
+    height: 2em;
+    width: 240px;
+    background: antiquewhite;
+    border: 3px solid rgb(25,13,5);
+    border-radius: 5px;
+}
+div#order-pay-page button:hover {
+    cursor: pointer;
+    background-color: #fae9c0;
+}
+
+div#order-success-pay-page {
+    width: 95%;
+    margin: 115px 2.5%;
+    background: antiquewhite;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px #000;
+    padding: 15px;
+}
+div#order-success-pay-page h1 {
+    text-align: center;
+}
+div#order-success-pay-page p {
+    text-align: center;
+    font-size: 1.5em;
+}
+div#order-success-pay-page img {
+    display: block;
+    margin: auto;
+}
+div#order-success-pay-page a {
+    display: block;
+    margin: 15px 0;
+    color: #000;
+    text-decoration: none;
+}
+div#order-success-pay-page button {
+    display: block;
+    margin: auto;
+    font-family: Montserrat;
+    font-size: 24px;
+    font-weight: bolder;
+    height: 2em;
+    width: 360px;
+    background: antiquewhite;
+    border: 3px solid rgb(25,13,5);
+    border-radius: 5px;
+}
+div#order-success-pay-page button:hover {
+    cursor: pointer;
+    background-color: #fae9c0;
+}
+
+div#banned-page {
+    width: 95%;
+    margin: 115px 2.5%;
+    background: antiquewhite;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px #000;
+    padding: 15px;
+}
+div#banned-page h1 {
+    text-align: center;
+}
+div#banned-page img {
+    display: block;
+    margin: auto;
+    height: 300px;
+}

@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div id="order-pay-page">
     <h1>Order was successfully created!</h1>
     <form action="{% url 'orders:order-success-pay' pk %}" method="post">
         {% csrf_token %}
         <input type="hidden" name="order" value="{{ order }}">
         <button type="submit">Pay an order</button>
     </form>
+
+</div>
 {% endblock content %}

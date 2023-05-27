@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
+<div id="order-success-pay-page">
     <h1>Order was successfully paid!</h1>
     <p>Administrator will soon confirm it</p>
+    <img src="{% static 'images/patrick-bateman.gif' %}" alt="">
     <a href="{% url 'albums:albums-list' %}"><button>Return to main page</button></a>
-{% endblock content %}
+</div>{% endblock content %}

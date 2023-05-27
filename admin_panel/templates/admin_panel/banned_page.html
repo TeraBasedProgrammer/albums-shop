@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <h1>You're banned on this website</h1>
+<div id="banned-page">
+    <h1>You're banned on this website :&#40;</h1>
+    <img src="{% static 'images/banned.gif' %}" alt="">
+</div>
 {% endblock content %}

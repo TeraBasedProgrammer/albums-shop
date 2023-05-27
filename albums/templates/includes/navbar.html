@@ -32,7 +32,7 @@
   {% if request.user.is_authenticated %}
   <a href="{% url 'orders:cart' %}">
     <div id="header-cart">
-      <img src="../../../static/images/cart.png" alt="cart.png">
+      <img src="{% static 'images/cart.png' %}" alt="">
       Cart
     </div>
   </a>

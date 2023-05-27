@@ -11,12 +11,9 @@
     <div id="album-info">
         <h1>{{ album.title }} ({{ album.release_date }})</h1>
         <h2>{{ album.artist.title }}</h2>
-        <!-- <p><strong>Release Year:</strong> {{ album.release_date }}</p> -->
         <p class="genres">
-            <!-- <strong>Genres:</strong> -->
             {% for genre in album.genres.all %}
             <span class="genre">{{ genre.title }}</span>
-            <!-- {% if not forloop.last %}, {% endif %} -->
             {% endfor %}
         </p>
         <p class="duration"><strong>Duration:</strong> {{ album.duration }}</p>
