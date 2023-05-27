@@ -1,60 +1,69 @@
-<div id="sidebar" style="width: 30%;">
-    <h2>Giga nigga based side bar front end is the best</h2>
-    <h3>Search</h3>
-    <form action="{% url 'albums:albums-search' %}" method="get">
-        <input type="text" name="q">
-        <button type="submit">Search</button>
-    </form>
-    <h3>Sort by</h3>
-    <form action="{% url 'albums:albums-filter' %}" method="get">
-        <h4>Price</h4>
-        <input type="radio" value="price" name="sort_by">
-        <label for="increase">Ascending</label><br>
-        <input type="radio" value="-price" name="sort_by">
-        <label for="decrease">Descending</label>
-        <br>
-        <br>
+<div id="sidebar">
+    <div class="sidebar-elem" id="search">
+        <h2>Search</h2>
+        <form action="{% url 'albums:albums-search' %}" method="get" id="form-search">
+            <input type="text" name="q">
+            <button type="submit">Search</button>
+        </form>
+        <hr>
+    </div>
 
-        <h4>Release date</h4>
-        <input type="radio" value="release_date" name="sort_by">
-        <label for="increase">Ascending</label><br>
-        <input type="radio" value="-release_date" name="sort_by">
-        <label for="decrease">Descending</label>
-        <br>
-        <button type="submit">Sort</button>
-    </form>
-    <form action="{% url 'albums:albums-filter' %}" method="get">
-        <div>
-            <h3>Filter by</h3>
-            <h4>Decades</h4>
-            <ul>
-                {% for year in view.get_decades_range %}
+    <div class="sidebar-elem" id="sort">
+        <h2>Sort by</h2>
+        <form action="{% url 'albums:albums-filter' %}" method="get">
+            <h3>Price</h3>
+            <input type="radio" value="price" name="sort_by">
+            <label for="increase">Ascending</label><br>
+            <input type="radio" value="-price" name="sort_by">
+            <label for="decrease">Descending</label>
+            <br>
+
+            <h3>Release date</h3>
+            <input type="radio" value="release_date" name="sort_by">
+            <label for="increase">Ascending</label><br>
+            <input type="radio" value="-release_date" name="sort_by">
+            <label for="decrease">Descending</label>
+            <br>
+            <button type="submit">Sort</button>
+        </form>
+        <hr>
+    </div>
+
+    <div class="sidebar-elem" id="filter">
+        <form action="{% url 'albums:albums-filter' %}" method="get">
+            <div>
+                <h2>Filter by</h2>
+                <h3>Decades</h3>
+                <ul>
+                    {% for year in view.get_decades_range %}
                     <li>
                         <input type="checkbox" name="decades" value="{{ year }}"> {{ year }}s
                     </li>
-                {% endfor %}
-            </ul>
-            <h4>Genres</h4>
-            <ul>
-                {% for genre in view.get_genres %}
+                    {% endfor %}
+                </ul>
+                <h3>Genres</h3>
+                <ul>
+                    {% for genre in view.get_genres %}
                     <li>
                         <input type="checkbox" name="genre" value="{{ genre.title }}">
                         <span>{{genre.title}}</span>
                     </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div>
-            <h4>Artists</h4>
-            <ul>
-                {% for artist in view.get_artists %}
+                    {% endfor %}
+                </ul>
+            </div>
+            <div>
+                <h3>Artists</h3>
+                <ul>
+                    {% for artist in view.get_artists %}
                     <li>
                         <input type="checkbox" name="artist" value="{{ artist.title }}">
                         <span>{{artist.title}}</span>
                     </li>
-                {% endfor %}
-            </ul>
-            <button type="submit">Search</button>
-        </div>
-    </form>
+                    {% endfor %}
+                </ul>
+                <button type="submit">Search</button>
+            </div>
+        </form>
+
+    </div>
 </div>
