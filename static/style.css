@@ -553,6 +553,50 @@ div#banned-page img {
     height: 300px;
 }
 
+
+
+div#admin-panel-main-page {
+    width: 95%;
+    margin: 115px 2.5%;
+    background: antiquewhite;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px #000;
+    padding: 15px;
+    height: 80%;
+}
+div#admin-panel-main-page h1 {
+    text-align: center;
+}
+div#admin-panel-main-page img {
+    display: block;
+    margin: auto;
+}
+div#admin-panel-main-page a {
+    display: block;
+    float: left;
+    box-sizing: border-box;
+    width: 16.66%;
+    margin: 60px 0;
+    color: #000;
+}
+div#admin-panel-main-page a button {
+    display: block;
+    width: 80%;
+    margin: auto;
+    font-family: Montserrat;
+    font-size: 24px;
+    font-weight: bolder;
+    height: 4em;
+    background: antiquewhite;
+    border: 3px solid rgb(25,13,5);
+    border-radius: 5px;
+}
+div#admin-panel-main-page a button:hover {
+    cursor: pointer;
+    background-color: #fae9c0;
+}
+
 div#confirmed-orders-page {
     width: 95%;
     margin: 115px 2.5%;
