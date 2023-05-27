@@ -22,7 +22,7 @@
 
   {% if request.user.is_authenticated %}
   <div id="header-logged">
-    <p>Logged in as: {{ request.user.username }}</p>
+    <p>Logged in as: <i>{{ request.user.username }}</i></p>
     <a href="{% url 'logout' %}" style="text-decoration: underline;">
       Logout
     </a>
