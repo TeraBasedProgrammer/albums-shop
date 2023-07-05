@@ -48,6 +48,20 @@ https://github.com/TeraBasedProgrammer/albums-shop
 ## Usage
 Open the main shop page (http://localhost:8000/albums/). If everything is OK you should see this:
 
+![image](https://github.com/TeraBasedProgrammer/albums-shop/assets/101703904/f1cbfcda-d0e2-4a12-9fae-4e99d133c9e2)
+
+For now, website has no data. To make it look like it has to be, you should type following command in terminal:
+
+```bash
+make setupdb
+```
+or
+```bash
+python manage.py setup-db
+```
+It will activate the script that will automatically set up the database.
+After the script runs, the site should look like this:
+
 ![image](https://github.com/TeraBasedProgrammer/albums-shop/assets/101703904/b787da20-f318-48c2-ae26-3f02c823253c)
 
 * To use website as administrator you should create a superuser:
