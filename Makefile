@@ -2,7 +2,7 @@
 
 # Run django server
 run:
-	python manage.py runserver
+	python manage.py runserver 8000
 
 # Run django python shell
 shell:
