@@ -152,5 +152,4 @@ cython_debug/
 
 # ~~~~~~~~~~~~~~~~~~~~~~~ Django ignore end ~~~~~~~~~~~~~~~~~~~
 
-albums-v2.json
 .vscode/
